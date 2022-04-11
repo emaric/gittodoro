@@ -1,7 +1,5 @@
 import { Duration } from '@/core/entities/Duration';
-import { DurationRepository } from '@/core/repository/DurationRepository';
-
-console.log(DurationRepository);
+import { DurationRepository } from '@/core/repositories/DurationRepository';
 
 export class DurationRepositoryImplementation extends DurationRepository {
   constructor(storage) {

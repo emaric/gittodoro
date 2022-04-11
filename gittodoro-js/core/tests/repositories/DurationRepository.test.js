@@ -1,6 +1,6 @@
-import { DurationRepository } from '@/core/repository/DurationRepository';
-import { DurationRepositoryImplementation } from '@/core/test/DurationRepositoryImplementation';
 import { Duration } from '@/core/entities/Duration';
+import { DurationRepository } from '@/core/repositories/DurationRepository';
+import { DurationRepositoryImplementation } from '@/core/tests/repositories/DurationRepositoryImplementation';
 
 describe('[DurationRepository] unit tests', () => {
   describe('when trying to instantiate DurationRepository', () => {

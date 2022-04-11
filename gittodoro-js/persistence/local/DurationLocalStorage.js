@@ -1,5 +1,5 @@
 import { Duration } from '@/core/entities/Duration';
-import { DurationRepository } from '@/core/repository/DurationRepository';
+import { DurationRepository } from '@/core/repositories/DurationRepository';
 
 export class DurationLocalStorage extends DurationRepository {
   static ITEM_ID = 'DefaultDuration';
