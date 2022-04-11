@@ -12,9 +12,6 @@ export class DurationRepositoryImplementation extends DurationRepository {
   }
 
   getDefaultDuration() {
-    if (!this.storage) {
-      throw new Error('No durations.');
-    }
     const duration = this.storage[0];
 
     const durationEntity = this.toDurationEntity(duration);

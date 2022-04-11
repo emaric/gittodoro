@@ -9,9 +9,17 @@ describe('[ViewDurationDetailsRequester] unit tests', () => {
     });
   });
 
-  describe('when trying to execute a request', () => {
-    it('should should get a response', () => {
-      expect('Not yet implemented.').toBe(true);
+  describe('when implementing ViewDurationDetailsRequester', () => {
+    it('should throw an exception when required methods are not overridden', () => {
+      class BadViewDurationDetailsRequester extends ViewDurationDetailsRequester {
+        constructor() {
+          super();
+        }
+      }
+
+      const bad = new BadViewDurationDetailsRequester();
+
+      expect(() => bad.getDefaultDuration({})).toThrow();
     });
   });
 });
