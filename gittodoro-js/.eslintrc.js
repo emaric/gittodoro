@@ -23,5 +23,6 @@ module.exports = {
     'no-return-assign': 0,
     'no-underscore-dangle': 0,
     'no-plusplus': 0,
+    'import/prefer-default-export': false,
   },
 };
