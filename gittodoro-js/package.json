@@ -1,0 +1,29 @@
+{
+  "name": "gittodoro",
+  "version": "0.0.0",
+  "description": "Github Issues progress tracker using the Pomodoro Technique.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/emaric/gittodoro.git"
+  },
+  "keywords": [
+    "pomodoro",
+    "tracker",
+    "productivity",
+    "todo",
+    "notes"
+  ],
+  "author": "Maricris Esgana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emaric/gittodoro/issues"
+  },
+  "homepage": "https://github.com/emaric/gittodoro#readme",
+  "dependencies": {
+    "jest": "^27.5.1"
+  }
+}
