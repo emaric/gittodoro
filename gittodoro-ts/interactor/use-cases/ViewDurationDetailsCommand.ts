@@ -16,6 +16,7 @@ export class ViewDurationDetailsCommand implements DurationCommandInterface {
   }
 
   execute(request: DurationRequest): void {
+    console.log(request)
     const duration = this.dataGateway.getDefaultDuration()
     this.presenter.present({ ...duration })
   }
