@@ -1,8 +1,14 @@
 {
-  "name": "gittodoro-js",
+  "name": "@emaric/gittodoro-js",
   "version": "0.0.1",
   "description": "Github Issues progress tracker using the Pomodoro Technique.",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@emaric"
+  },
+  "files": [
+    "src"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "eslint ./"
