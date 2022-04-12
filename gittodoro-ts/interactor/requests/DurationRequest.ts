@@ -1,4 +1,4 @@
 export type DurationRequest = {
-  timestamp: Date,
+  timestamp: Date
   message: string
 }
