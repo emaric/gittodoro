@@ -1,10 +1,10 @@
 import { SessionDataGatewayInterface } from '@/interactor/data-gateways/SessionDataGatewayInterface'
 import { SessionCommandInterface } from '@/interactor/requests/SessionCommandInterface'
-import { StartSessionRequest } from '@/interactor/requests/SessionRequest'
+import { ViewSessionRequest } from '@/interactor/requests/SessionRequest'
 import { SessionPresenterInterface } from '@/interactor/responses/SessionPresenterInterface'
 import { SessionResponse } from '@/interactor/responses/SessionResponse'
 
-export class StartSessionCommand implements SessionCommandInterface {
+export class ViewSessionDetailsCommand implements SessionCommandInterface {
   sessionDataGateway: SessionDataGatewayInterface
   sessionPresenter: SessionPresenterInterface
 
@@ -16,8 +16,8 @@ export class StartSessionCommand implements SessionCommandInterface {
     this.sessionPresenter = sessionPresenter
   }
 
-  execute(request: StartSessionRequest): void {
-    const session = this.sessionDataGateway.createSession({ ...request })
+  execute(request: ViewSessionRequest): void {
+    const session = this.sessionDataGateway.readSession(request.start)
     const sessionResponse: SessionResponse = {
       ...session,
     }

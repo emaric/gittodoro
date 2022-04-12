@@ -19,9 +19,7 @@ export class EndSessionCommand implements SessionCommandInterface {
   execute(request: EndSessionRequest): void {
     const session = this.sessionDataGateway.endSession(request.end)
     const sessionResponse: SessionResponse = {
-      id: session.id,
-      start: session.start,
-      end: session.end,
+      ...session,
     }
     this.sessionPresenter.present(sessionResponse)
   }
