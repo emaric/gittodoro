@@ -3,7 +3,7 @@ import { SessionDataGatewayInterface } from "@/interactor/data-gateways/SessionD
 import { SessionPresenterInterface } from "@/interactor/responses/SessionPresenterInterface";
 import { SessionResponse } from "@/interactor/responses/SessionResponse";
 import { StartSessionCommand } from "@/interactor/use-cases/StartSessionCommand";
-import { SessionRequest } from "@/interactor/requests/SessionRequest";
+import { StartSessionRequest } from "@/interactor/requests/SessionRequest";
 
 class TestSessionDataGateway implements SessionDataGatewayInterface {
   storage: Session[]
@@ -11,6 +11,7 @@ class TestSessionDataGateway implements SessionDataGatewayInterface {
   constructor(storage: Session[]) {
     this.storage = storage
   }
+  
   createSession(start: Date): Session {
     const session: Session = {
       id: this.storage.length, 
@@ -21,7 +22,10 @@ class TestSessionDataGateway implements SessionDataGatewayInterface {
 
     return session;
   }
-  
+
+  endSession(end: Date): Session {
+    throw new Error("Method not implemented.");
+  }
 }
 
 class TestSessionPresenter implements SessionPresenterInterface {
@@ -44,7 +48,7 @@ describe('[StartSessionCommand] unit tests', () => {
       const dataGateway = new TestSessionDataGateway([])
       const presenter = new TestSessionPresenter('A session has started: ')
       const startSessionCommand = new StartSessionCommand(dataGateway, presenter)
-      const request: SessionRequest = {
+      const request: StartSessionRequest = {
         start: new Date('2022-04-12T00:00:00'),
         message: 'This is my first session.'
       }
