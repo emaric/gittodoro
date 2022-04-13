@@ -1,6 +1,6 @@
-import { SessionController } from '@/controller/SessionController'
-import { EndSessionCommand } from '@/interactor/use-cases/EndSessionCommand'
-import { StartSessionCommand } from '@/interactor/use-cases/StartSessionCommand'
+import { SessionController } from '../../controller/SessionController'
+import { EndSessionCommand } from '../../interactor/use-cases/EndSessionCommand'
+import { StartSessionCommand } from '../../interactor/use-cases/StartSessionCommand'
 import { CLIView, SessionCLIPresenter } from './SessionCLIPresenter'
 import { SessionInMemory } from './SessionInMemory'
 
