@@ -1,5 +1,5 @@
 {
-  "name": "gittodoro-ts",
+  "name": "@emaric/gittodoro-ts",
   "version": "0.0.1",
   "description": "Gittodoro in Typescript",
   "main": "index.js",
