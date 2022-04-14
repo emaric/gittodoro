@@ -1,5 +1,7 @@
+import { Duration } from '@/interactor/entities/Duration'
 import { Session } from '@/interactor/entities/Session'
 import { ViewSessionRequest } from '@/interactor/requests/SessionRequest'
+import { mapSession } from '@/interactor/use-cases/mapper/EntityResponseMapper'
 import { ViewSessionDetailsCommand } from '@/interactor/use-cases/ViewSessionDetailsCommand'
 import { SessionInMemoryStorage } from './utils/SessionInMemoryStorage'
 import { SessionStringOutputPresenter } from './utils/SessionStringOutputPresenter'
@@ -7,14 +9,19 @@ import { SessionStringOutputPresenter } from './utils/SessionStringOutputPresent
 describe('[ViewSessionDetails] unit tests', () => {
   describe('when trying to execute View Session Details command', () => {
     it('should should return a session with the same start date', () => {
-      const sampleSession: Session = {
+      const duration = new Duration({
+        id: 0,
+        pomodoro: 25,
+        short: 5,
+        long: 15,
+        longInterval: 4,
+      })
+
+      const sampleSession = new Session({
         id: 0,
         start: new Date('2022-04-12T09:00:00'),
-        pomodoro: 0,
-        short: 0,
-        long: 0,
-        longInterval: 0,
-      }
+        duration: duration,
+      })
 
       const dataGateway = new SessionInMemoryStorage([sampleSession])
       const sessionPresenter = new SessionStringOutputPresenter(
@@ -33,7 +40,7 @@ describe('[ViewSessionDetails] unit tests', () => {
       viewSessionDetailsCommand.execute(request)
 
       const expectedOutput =
-        'View Session Details: ' + JSON.stringify(sampleSession)
+        'View Session Details: ' + JSON.stringify(mapSession(sampleSession))
       expect(sessionPresenter.output).toBe(expectedOutput)
     })
   })

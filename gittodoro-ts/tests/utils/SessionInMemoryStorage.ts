@@ -1,4 +1,5 @@
 import { SessionDataGatewayInterface } from '@/interactor/data-gateways/SessionDataGatewayInterface'
+import { Duration } from '@/interactor/entities/Duration'
 import { Session } from '@/interactor/entities/Session'
 
 export class SessionInMemoryStorage implements SessionDataGatewayInterface {
@@ -15,10 +16,15 @@ export class SessionInMemoryStorage implements SessionDataGatewayInterface {
     long: number
     longInterval: number
   }): Session {
-    const session: Session = {
-      id: this.storage.length,
+    const duration = new Duration({
       ...args,
-    }
+      id: -1,
+    })
+    const session = new Session({
+      id: this.storage.length,
+      start: args.start,
+      duration: duration,
+    })
 
     this.storage.push(session)
 

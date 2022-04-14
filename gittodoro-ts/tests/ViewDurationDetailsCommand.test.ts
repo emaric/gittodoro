@@ -31,13 +31,13 @@ class TestDurationPresenter implements DurationPresenterInterface {
 describe('[ViewDurationDetailsCommand] unit tests', () => {
   describe('when trying to execute view duration details command', () => {
     it('should get a duration response', () => {
-      const sampleDuration = {
+      const sampleDuration = new Duration({
         id: 0,
         pomodoro: 50,
         short: 10,
         long: 15,
         longInterval: 4,
-      }
+      })
 
       const testDataGateway = new TestDurationDataGateway(sampleDuration)
       const testPresenter = new TestDurationPresenter('This is the response: ')

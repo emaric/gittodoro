@@ -2,6 +2,7 @@ import { StartSessionCommand } from '@/interactor/use-cases/StartSessionCommand'
 import { StartSessionRequest } from '@/interactor/requests/SessionRequest'
 import { SessionInMemoryStorage } from '@/tests/utils/SessionInMemoryStorage'
 import { SessionStringOutputPresenter } from '@/tests/utils/SessionStringOutputPresenter'
+import { mapSession } from '@/interactor/use-cases/mapper/EntityResponseMapper'
 describe('[StartSessionCommand] unit tests', () => {
   describe('when trying to execute the start session command', () => {
     it('should create an incomplete session', () => {
@@ -24,7 +25,8 @@ describe('[StartSessionCommand] unit tests', () => {
       startSessionCommand.execute(request)
 
       const expectedOutput =
-        'A session has started: ' + JSON.stringify(dataGateway.storage[0])
+        'A session has started: ' +
+        JSON.stringify(mapSession(dataGateway.storage[0]))
 
       expect(presenter.output).toBe(expectedOutput)
     })

@@ -1,5 +1,5 @@
 import app from '@/examples/cli-app/index'
-import { SessionCLIApp } from './SessionCLIApp'
+import { SessionCLIApp } from './controller'
 
 jest.useFakeTimers()
 jest.spyOn(global, 'setTimeout')
@@ -9,9 +9,9 @@ describe('[index] unit tests', () => {
     const consoleLog = jest.fn()
     console.log = consoleLog
 
-    it('should display the first state pomodoro and the remaining time', () => {
-      app.run()
+    app.run()
 
+    it('should display the first state pomodoro and the remaining time', () => {
       expect(setTimeout).toHaveBeenCalledTimes(1)
       expect(consoleLog.mock.calls.at(-1).at(-1)).toBe(
         'pomodoro : ' + duration.pomodoro
@@ -54,7 +54,7 @@ describe('[index] unit tests', () => {
       const output = consoleLog.mock.calls.join('\n')
       const expected = `This sample gittodoro app is running...
 Use case #1: The user can start a session.
-Starting a session...,[object Object]
+Starting a session...
 pomodoro : 25
 pomodoro : 24
 pomodoro : 23
@@ -190,7 +190,7 @@ long : 1
 long : 0
 pomodoro : 25
 Use case #2: This user can stop a session.
-Stoping a session...,[object Object]
+Stoping a session...
 Session has ended.`
       expect(output).toBe(expected)
     })

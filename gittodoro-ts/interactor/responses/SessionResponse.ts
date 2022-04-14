@@ -1,3 +1,8 @@
+export type StateTimer = {
+  state: string
+  duration: number
+}
+
 export type SessionResponse = {
   id: number
   start: Date
@@ -6,4 +11,6 @@ export type SessionResponse = {
   short: number
   long: number
   longInterval: number
+  timerSequenceDuration: number
+  timerSequence: StateTimer[]
 }

@@ -1,5 +1,5 @@
-import { CLI } from './CLI'
-import { SessionCLIApp } from './SessionCLIApp'
+import { CLI } from './view'
+import { SessionCLIApp } from './controller'
 
 const cli = new CLI()
 

@@ -2,7 +2,7 @@ import { SessionDataGatewayInterface } from '@/interactor/data-gateways/SessionD
 import { SessionCommandInterface } from '@/interactor/requests/SessionCommandInterface'
 import { StartSessionRequest } from '@/interactor/requests/SessionRequest'
 import { SessionPresenterInterface } from '@/interactor/responses/SessionPresenterInterface'
-import { SessionResponse } from '@/interactor/responses/SessionResponse'
+import { mapSession } from '@/interactor/use-cases/mapper/EntityResponseMapper'
 
 export class StartSessionCommand implements SessionCommandInterface {
   sessionDataGateway: SessionDataGatewayInterface
@@ -18,9 +18,6 @@ export class StartSessionCommand implements SessionCommandInterface {
 
   execute(request: StartSessionRequest): void {
     const session = this.sessionDataGateway.createSession({ ...request })
-    const sessionResponse: SessionResponse = {
-      ...session,
-    }
-    this.sessionPresenter.present(sessionResponse)
+    this.sessionPresenter.present(mapSession(session))
   }
 }
