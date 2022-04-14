@@ -6,8 +6,6 @@ import { Session } from './models/Session'
 import { State } from './models/State'
 import { StateTimer } from './models/StateTimer'
 
-console.log(State.pomodoro.toString())
-
 export const mapTimerSequence = (
   timerSequence: StateTimerResponse[]
 ): StateTimer[] => {
