@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA,OAAO,GAAG,MAAM,wBAAwB,CAAA;AAExC,OAAO,CAAC,GAAG,CAAC,GAAG,CAAC,CAAA;AAEhB,GAAG,CAAC,GAAG,EAAE,CAAA","sourcesContent":["import app from 'examples/cli-app/index'\n\nconsole.log(app)\n\napp.run()\n"]}

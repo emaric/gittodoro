@@ -2,8 +2,10 @@
   "name": "@emaric/gittodoro-ts",
   "version": "0.0.1",
   "description": "Gittodoro in Typescript",
-  "main": "index.js",
+  "main": "lib/examples/cli-app/index.js",
+  "types": "lib",
   "scripts": {
+    "build": "tsc -p .",
     "lint": "eslint ./",
     "test": "jest --maxWorkers=1"
   },
