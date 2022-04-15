@@ -1,4 +1,4 @@
-import { SessionProvider } from '@/modules/gittodoro/views/react-context/SessionContextProvider'
+import { SessionProvider } from '@/context/SessionContextProvider'
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
 

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { SessionController } from "../../controllers/SessionController"
-import { SessionView } from "../SessionView"
+import { SessionController } from "../modules/gittodoro/controllers/SessionController"
+import { SessionView } from "../modules/gittodoro/views/SessionView"
 
 const SessionContext = createContext({})
 
