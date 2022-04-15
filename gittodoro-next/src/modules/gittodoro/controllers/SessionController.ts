@@ -1,12 +1,12 @@
-import { SessionDataGatewayInterface } from '@emaric/gittodoro-ts/interactor/data-gateways/SessionDataGatewayInterface'
-import { SessionController as MainSessionController } from '@emaric/gittodoro-ts/controller/SessionController'
+import { SessionDataGatewayInterface } from '@emaric/gittodoro-ts/lib/interactor/data-gateways/SessionDataGatewayInterface'
+import { SessionController as MainSessionController } from '@emaric/gittodoro-ts/lib/controller/SessionController'
 import {
   StartSessionRequest,
   EndSessionRequest,
-} from '@emaric/gittodoro-ts/interactor/requests/SessionRequest'
-import { SessionPresenterInterface } from '@emaric/gittodoro-ts/interactor/responses/SessionPresenterInterface'
-import { StartSessionCommand } from '@emaric/gittodoro-ts/interactor/use-cases/StartSessionCommand'
-import { EndSessionCommand } from '@emaric/gittodoro-ts/interactor/use-cases/EndSessionCommand'
+} from '@emaric/gittodoro-ts/lib/interactor/requests/SessionRequest'
+import { SessionPresenterInterface } from '@emaric/gittodoro-ts/lib/interactor/responses/SessionPresenterInterface'
+import { StartSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/StartSessionCommand'
+import { EndSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/EndSessionCommand'
 
 import { LocalStorageDataGateway } from '../db/local'
 import { SessionPresenter, SessionViewInterface } from './presenters/sessions'

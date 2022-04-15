@@ -1,6 +1,6 @@
-import { SessionDataGatewayInterface } from '@emaric/gittodoro-ts/interactor/data-gateways/SessionDataGatewayInterface'
-import { Session } from '@emaric/gittodoro-ts/interactor/entities/Session'
-import { Duration } from '@emaric/gittodoro-ts/interactor/entities/Duration'
+import { SessionDataGatewayInterface } from '@emaric/gittodoro-ts/lib/interactor/data-gateways/SessionDataGatewayInterface'
+import { Session } from '@emaric/gittodoro-ts/lib/interactor/entities/Session'
+import { Duration } from '@emaric/gittodoro-ts/lib/interactor/entities/Duration'
 
 const mapToEntity = (sessionsString: string): Session[] => {
   const objs = JSON.parse(sessionsString)
@@ -54,10 +54,16 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
     return session
   }
 
-  readSession(start: Date) {
-    return this.sessions.find(
+  readSession(start: Date): Session {
+    const session = this.sessions.find(
       (session) => session.start.getTime() == start.getTime()
     )
+
+    if (session) {
+      return session
+    }
+
+    throw new Error('Session not found')
   }
 
   endSession(end: Date): Session {

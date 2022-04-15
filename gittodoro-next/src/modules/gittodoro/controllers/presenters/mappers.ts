@@ -1,6 +1,6 @@
-import { SessionResponse } from '@emaric/gittodoro-ts/interactor/responses/SessionResponse'
+import { SessionResponse } from '@emaric/gittodoro-ts/lib/interactor/responses/SessionResponse'
 import { Session } from '@/modules/gittodoro/models/Session'
-import { StateTimer as StateTimerResponse } from '@emaric/gittodoro-ts/interactor/responses/SessionResponse'
+import { StateTimer as StateTimerResponse } from '@emaric/gittodoro-ts/lib/interactor/responses/SessionResponse'
 import { StateTimer } from '@/modules/gittodoro/models/StateTimer'
 import { State } from '@/modules/gittodoro/models/State'
 
