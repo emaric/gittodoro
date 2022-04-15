@@ -9,7 +9,14 @@ const Home: NextPage = () => {
         <title>Gittodoro</title>
       </Head>
 
-      <main className={styles.container}></main>
+      <div className={styles.container}>
+        <main>
+          <h1 className={styles.title}>git<span>todo</span>ro</h1>
+        </main>
+        <footer>
+          <span>Copyright © 2022</span> <a href="https://github.com/emaric/gittodoro.git">@emaric/gittorodo</a>
+        </footer>
+      </div>
     </>
   )
 }
