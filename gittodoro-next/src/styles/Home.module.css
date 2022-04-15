@@ -28,6 +28,7 @@
   font-size: 1.5rem;
   font-weight: 100;
   letter-spacing: 2px;
+  cursor: default;
 }
 
 .title span {
