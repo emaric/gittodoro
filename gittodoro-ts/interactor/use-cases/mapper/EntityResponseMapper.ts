@@ -1,10 +1,10 @@
-import { Session } from '@/interactor/entities/Session'
-import { State } from '@/interactor/entities/State'
-import { StateTimer } from '@/interactor/entities/StateTimer'
+import { Session } from '../../entities/Session'
+import { State } from '../../entities/State'
+import { StateTimer } from '../../entities/StateTimer'
 import {
   SessionResponse,
   StateTimer as StateTimerResponse,
-} from '@/interactor/responses/SessionResponse'
+} from '../../responses/SessionResponse'
 
 export const mapTimerSequence = (
   timerSequence: StateTimer[]
