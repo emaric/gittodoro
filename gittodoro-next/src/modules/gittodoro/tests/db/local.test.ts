@@ -1,6 +1,6 @@
-import { LocalStorageDataGateway } from '../local'
+import { LocalStorageDataGateway } from '../../db/local'
 
-import './MockLocalStorage'
+import '../MockLocalStorage'
 
 describe('[local] unit tests', () => {
   describe('when trying to create sessions', () => {

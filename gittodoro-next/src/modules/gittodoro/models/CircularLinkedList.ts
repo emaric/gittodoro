@@ -52,4 +52,15 @@ export class CircularLinkedList<T> {
     if (this.currentNode.prev) this.currentNode = this.currentNode.prev
     return this.current
   }
+
+  toJSON(key: string) {
+    const list = Array.from(Array(this.length)).map((_, i) => {
+      if (i == 0) {
+        return this.current
+      }
+      return this.next()
+    })
+
+    return list
+  }
 }

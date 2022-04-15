@@ -23,13 +23,20 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
   static SESSIONS_ID = 'gittodoro-sessions'
   static DEFAULT_DURATION_ID = 'gittodoro-default-duration'
 
+  private updateSessions(sessions: Session[]) {
+    localStorage.setItem(
+      LocalStorageDataGateway.SESSIONS_ID,
+      mapToString(sessions)
+    )
+  }
+
   createSession(args: {
     start: Date
     pomodoro: number
     short: number
     long: number
     longInterval: number
-  }) {
+  }): Session {
     const session = new Session({
       ...args,
       id: this.sessions.length,
@@ -42,20 +49,28 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
     const sessions = this.sessions
     sessions.push(session)
 
-    localStorage.setItem(
-      LocalStorageDataGateway.SESSIONS_ID,
-      mapToString(sessions)
-    )
+    this.updateSessions(sessions)
 
     return session
   }
+
   readSession(start: Date) {
     return this.sessions.find(
       (session) => session.start.getTime() == start.getTime()
     )
   }
-  endSession(end: Date) {
-    throw new Error('Method not implemented.')
+
+  endSession(end: Date): Session {
+    const last = this.sessions.at(-1)
+    if (last) {
+      if (last.end) {
+        throw new Error('No active session.')
+      }
+      last.end = end
+      this.updateSessions(this.sessions)
+      return last
+    }
+    throw new Error('Sessions storage is empty.')
   }
 
   get sessions(): Session[] {

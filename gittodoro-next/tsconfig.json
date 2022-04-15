@@ -11,8 +11,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve",
+    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
