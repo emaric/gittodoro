@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emaric/gittodoro-ts": "^0.1.1",
+    "@js-temporal/polyfill": "^0.4.1",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"

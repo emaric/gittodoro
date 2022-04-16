@@ -1,18 +1,49 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { SessionController } from "../modules/gittodoro/controllers/SessionController"
-import { SessionView } from "../modules/gittodoro/views/SessionView"
+import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react"
 
-const SessionContext = createContext({})
+import { SessionController } from "@/modules/gittodoro/controllers/SessionController"
+import { SessionView } from "@/modules/gittodoro/views/SessionView"
 
-export const SessionProvider = (props: { children: JSX.Element }) => {
-  const [session, setSession] = useState(undefined)
+import { Session } from "@/models/Session"
 
-  const sessionView = new SessionView(setSession)
+type SessionContextType = {
+  session?: Session,
+  start: () => void,
+  stop: () => void
+}
+
+const SessionContext = createContext<SessionContextType | undefined>(undefined)
+
+interface Props {
+  children: ReactNode
+}
+
+export const SessionProvider: FC<Props> = ({ children }) => {
+  const [session, setSession] = useState<Session | undefined>(undefined)
+
+  const sessionView = new SessionView((s: any) => {
+    setSession(new Session(s))
+  })
   const sessionController = new SessionController(sessionView)
 
+  const defaultDuration = {
+    pomodoro: 20,
+    short: 5,
+    long: 15,
+    longInterval: 4
+  }
+
+  const start = () => {
+    const now = new Date()
+    sessionController.start(defaultDuration, now)
+  }
+  const stop = () => {
+    const now = new Date()
+    sessionController.stop(now)
+  }
+
   return (
-    <SessionContext.Provider value={{ session, sessionController }}>
-      {props.children}
+    <SessionContext.Provider value={{ session, start, stop }}>
+      {children}
     </SessionContext.Provider>
   )
 }

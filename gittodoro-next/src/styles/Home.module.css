@@ -12,6 +12,11 @@
   height: 100vh;
 }
 
+.container main section {
+  width: 100%;
+  max-width: 30rem;
+}
+
 .container footer {
   display: flex;
   justify-content: center;
