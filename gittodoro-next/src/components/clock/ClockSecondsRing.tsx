@@ -36,7 +36,6 @@ const ClockSecondsRing: FC<Props> = ({ clock }) => {
         CSS_VAR_CLOCK_DURATION,
         clock.duration.toString()
       )
-      console.log(clock.remaining)
       setAnimation(clock.remaining > 0 ? Animation.Reset : Animation.Hide)
     }
   }, [clock, ref, setAnimation])

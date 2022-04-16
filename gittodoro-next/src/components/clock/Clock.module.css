@@ -95,7 +95,7 @@
   stroke: var(--long-break-color);
 }
 
-.active_timer[animation="0"] {
+.active_timer[animation="1"] {
   animation: animate-active-ring calc(var(--duration) * 1s) linear;
   stroke-dasharray: 0 100;
 }
