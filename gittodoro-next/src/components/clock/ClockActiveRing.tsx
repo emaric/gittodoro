@@ -1,12 +1,11 @@
 import { FC, RefObject, useEffect, useRef, useState } from "react"
 
 import * as DateTime from "@/modules/temporal/DateTime"
-import Clock from "@/models/Clock"
+import { Clock } from "@/models/Clock"
+import { Record } from "@/models/Record"
 
 import styles from "./Clock.module.css"
-
 import { CIRCUMFERENCE as C, RADIUS as R, CX, CY } from "./constants"
-import { Record } from "@/models/Record"
 
 enum Animation {
   Disabled,

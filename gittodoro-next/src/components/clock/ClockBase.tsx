@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
-import styles from './Clock.module.css'
 
+import styles from './Clock.module.css'
 import { RADIUS as R, CX, CY } from './constants'
 
 interface Props {

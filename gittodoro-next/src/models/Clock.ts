@@ -1,6 +1,6 @@
 import * as DateTime from '@/modules/temporal/DateTime'
 
-export default class Clock {
+export class Clock {
   start: DateTime.DateTimeType
   end: DateTime.DateTimeType
   duration: number

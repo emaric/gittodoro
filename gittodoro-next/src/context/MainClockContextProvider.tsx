@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react"
 
-import Clock from "@/models/Clock"
+import { Clock } from "@/models/Clock"
 import * as DateTime from "@/modules/temporal/DateTime"
 
 

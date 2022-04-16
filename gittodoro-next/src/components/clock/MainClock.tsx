@@ -3,13 +3,14 @@ import { useState, MouseEvent, FC, useEffect, useCallback } from 'react'
 import { useMainClock } from '@/context/MainClockContextProvider'
 import { useSession } from '@/context/SessionContextProvider'
 import { Session } from '@/models/Session'
+import { Record, createRecord } from '@/models/Record'
 
 import ClockBase from "./ClockBase"
 import ClockButton from "./ClockButton"
 import ClockSecondsRing from "./ClockSecondsRing"
 import ClockCountdownTimer from './ClockCountdownTimer'
 import ClockActiveRing from './ClockActiveRing'
-import { Record, createRecord } from '@/models/Record'
+import ClockRecordsRing from './ClockRecordsRing'
 
 export const MainClock: FC = () => {
   const { mainClock } = useMainClock()
@@ -22,6 +23,7 @@ export const MainClock: FC = () => {
   const [remainingTime, setRemainingTime] = useState(defaultPomodoro)
 
   const [record, setRecord] = useState<Record | undefined>(undefined)
+  const [records, setRecords] = useState<Record[]>([])
 
   const handleClick = async (event: MouseEvent<SVGCircleElement>) => {
     if (!session || session?.end) {
@@ -32,6 +34,12 @@ export const MainClock: FC = () => {
       await Promise.resolve(stop())
     }
   }
+
+  const updateRecords = useCallback(() => {
+    if (record) {
+      setRecords(records.concat(record))
+    }
+  }, [record, records])
 
   const updateRecord = useCallback(() => {
     if (!session || session?.end) {
@@ -60,11 +68,12 @@ export const MainClock: FC = () => {
         session.switchTimer()
         updateCountdownTimer()
         updateRecord()
+        updateRecords()
       }, (remainingTime + Session.TIMER_DELAY) * 1000)
 
       return () => clearTimeout(to)
     }
-  }, [remainingTime, session, updateCountdownTimer, updateRecord])
+  }, [remainingTime, session, updateCountdownTimer, updateRecord, updateRecords])
 
   useEffect(() => {
     updateCountdownTimer()
@@ -74,6 +83,7 @@ export const MainClock: FC = () => {
   return (
     <ClockBase>
       {mainClock && <ClockSecondsRing clock={mainClock} />}
+      {mainClock && <ClockRecordsRing clock={mainClock} records={records} />}
       {mainClock && <ClockActiveRing clock={mainClock} record={record} />}
       <ClockButton onClick={handleClick}>
         <ClockCountdownTimer initialDuration={remainingTime} state={state} running={countdown} />

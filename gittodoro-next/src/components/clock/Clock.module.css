@@ -45,15 +45,15 @@
   stroke: rgb(0, 30, 29);
 }
 
-.record[state="Pomodoro"] {
+.record[state="pomodoro"] {
   stroke: var(--pomodoro-color);
 }
 
-.record[state="Short"] {
+.record[state="short"] {
   stroke: var(--short-break-color);
 }
 
-.record[state="Long"] {
+.record[state="long"] {
   stroke: var(--long-break-color);
 }
 

@@ -1,9 +1,8 @@
-import Clock from '@/models/Clock'
 import { useRef, useState, useEffect, FC } from 'react'
 
+import { Clock } from '@/models/Clock'
+
 import styles from './Clock.module.css'
-
-
 import {
   CSS_VAR_ELAPSED_TIME,
   CSS_VAR_CLOCK_DURATION,
