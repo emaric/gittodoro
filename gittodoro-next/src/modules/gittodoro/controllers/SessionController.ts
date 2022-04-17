@@ -43,6 +43,7 @@ export class SessionController {
       message: 'Stop the last session',
       end,
     }
+    console.log('Session Controller...', request, this.mainController)
     this.mainController.endSession(this.endCommand, request)
   }
 }

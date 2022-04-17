@@ -43,13 +43,22 @@ export const SessionProvider: FC<Props> = ({ children }) => {
       longInterval: 4
     }
 
-    sessionController?.start(defaultDuration, now)
+    if (sessionController) {
+      sessionController.start(defaultDuration, now)
+    } else {
+      throw new Error('sessionController is undefined..')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionController])
 
   const stop = useCallback(() => {
-    const now = new Date()
-    sessionController?.stop(now)
+    if (sessionController) {
+      const now = new Date()
+      console.log('stop....', sessionController)
+      sessionController.stop(now)
+    } else {
+      throw new Error('sessionController is undefined...')
+    }
   }, [sessionController])
 
   return (

@@ -72,8 +72,14 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
       if (last.end) {
         throw new Error('No active session.')
       }
-      last.end = end
-      this.updateSessions(this.sessions)
+      this.updateSessions(
+        this.sessions.map((s) => {
+          if (s.start.getTime() == last.start.getTime()) {
+            s.end = end
+          }
+          return s
+        })
+      )
       return last
     }
     throw new Error('Sessions storage is empty.')
