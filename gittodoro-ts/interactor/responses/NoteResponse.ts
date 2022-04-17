@@ -1,5 +1,7 @@
 export type NoteResponse = {
-  id: number
-  date: Date
-  content: string
+  timestamp: Date
+  message: string
+  id?: number
+  date?: Date
+  content?: string
 }

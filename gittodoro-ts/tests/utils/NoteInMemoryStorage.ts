@@ -29,7 +29,9 @@ export class NoteInMemoryStorage implements NoteDataGatewayInterface {
   update(note: Note): Note {
     this.storage = this.storage.map((n) => {
       if (note.id == n.id) {
-        return note
+        return {
+          ...note,
+        }
       } else {
         return n
       }
@@ -39,5 +41,8 @@ export class NoteInMemoryStorage implements NoteDataGatewayInterface {
 
   delete(id: number): void {
     this.storage = this.storage.filter((n) => n.id != id)
+    if (this.storage.find((n) => n.id == id)) {
+      throw new Error('Deletion was unsuccessful.')
+    }
   }
 }

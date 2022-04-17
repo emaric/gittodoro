@@ -28,5 +28,9 @@ export const mapSession = (session: Session): SessionResponse => {
 }
 
 export const mapNote = (note: Note): NoteResponse => {
-  return note
+  return {
+    ...note,
+    timestamp: new Date(),
+    message: 'mapped note',
+  }
 }
