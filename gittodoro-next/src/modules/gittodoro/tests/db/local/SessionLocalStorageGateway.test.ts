@@ -1,8 +1,8 @@
-import { SessionLocalStorageGateway } from '../../db/local/SessionLocalStorageGateway'
+import { SessionLocalStorageGateway } from '@/modules/gittodoro/db/local/SessionLocalStorageGateway'
 
-import '../MockLocalStorage'
+import '@/modules/gittodoro/tests/MockLocalStorage'
 
-describe('[local] unit tests', () => {
+describe('[SessionLocalStorageGateway] unit tests', () => {
   describe('when trying to create sessions', () => {
     const gateway = new SessionLocalStorageGateway()
     const date = new Date('2022-04-15T00:01:00.000Z')
