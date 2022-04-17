@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, useCallback } from "react"
 
 import { Clock } from "@/models/Clock"
 import * as DateTime from "@/modules/temporal/DateTime"
@@ -27,19 +27,25 @@ const createClock = () => {
 export const MainClockProvider = (props: { children: JSX.Element }) => {
   const [mainClock, setMainClock] = useState<Clock | undefined>(undefined)
 
+  const updateMainClock = useCallback(() => {
+    setMainClock(createClock())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mainClock])
+
   useEffect(() => {
     if (mainClock) {
       const remainingTime = mainClock.remaining * 1000
       if (remainingTime > 0) {
         const timeout = setTimeout(() => {
-          setMainClock(createClock())
+          updateMainClock()
         }, remainingTime)
         return () => clearTimeout(timeout)
       }
     } else {
       setMainClock(createClock())
     }
-  }, [mainClock])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateMainClock])
 
   return (
     <MainClockContext.Provider value={{ mainClock }}>

@@ -51,11 +51,13 @@ const ClockCountdownTimer: FC<Props> = ({ state, initialDuration, running = fals
 
   return (
     <>
-      <Head>
-        <title>
-          {displayMinutes}:{displaySeconds}
-        </title>
-      </Head>
+      {running &&
+        <Head>
+          <title>
+            {displayMinutes}:{displaySeconds}
+          </title>
+        </Head>
+      }
       {remainingMinutes >= 100 &&
         <Text value={Math.floor(remainingMinutes / 100)} x={"16%"} state={state} />
       }

@@ -11,6 +11,7 @@ import ClockSecondsRing from "./ClockSecondsRing"
 import ClockCountdownTimer from './ClockCountdownTimer'
 import ClockActiveRing from './ClockActiveRing'
 import ClockRecordsRing from './ClockRecordsRing'
+import Head from 'next/head'
 
 export const MainClock: FC = () => {
   const { mainClock } = useMainClock()
@@ -91,6 +92,11 @@ export const MainClock: FC = () => {
 
   return (
     <>
+      {(!session || session.end) ? (
+        <Head>
+          <title>GIT TODO RO</title>
+        </Head>
+      ) : null}
       <ClockBase>
         {mainClock && <ClockSecondsRing clock={mainClock} />}
         {mainClock && <ClockRecordsRing clock={mainClock} records={records} />}

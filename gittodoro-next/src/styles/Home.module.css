@@ -23,6 +23,7 @@
   justify-content: center;
   align-items: center;
   font-weight: 100;
+  font-size: 0.5rem;
 }
 
 .container footer span {
@@ -31,15 +32,15 @@
 
 .title {
   color: white;
-  font-size: 1.5rem;
+  font-size: 0.8rem;
   font-weight: 100;
   letter-spacing: 2px;
   cursor: default;
+  text-transform: uppercase;
 }
 
 .title span {
-  margin: 3px;
-  font-size: 2rem;
-  vertical-align: sub;
-  text-transform: uppercase;
+  margin: 4px;
+  /* font-size: 2rem; */
+  /* vertical-align: sub; */
 }
