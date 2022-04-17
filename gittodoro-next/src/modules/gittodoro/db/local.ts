@@ -86,6 +86,10 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
     throw new Error('Sessions storage is empty.')
   }
 
+  clearStorage() {
+    this.updateSessions([])
+  }
+
   get sessions(): Session[] {
     const sessions = localStorage.getItem(LocalStorageDataGateway.SESSIONS_ID)
     if (sessions) {

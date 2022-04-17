@@ -1,4 +1,3 @@
-import { SessionDataGatewayInterface } from '@emaric/gittodoro-ts/lib/interactor/data-gateways/SessionDataGatewayInterface'
 import { SessionController as MainSessionController } from '@emaric/gittodoro-ts/lib/controller/SessionController'
 import {
   StartSessionRequest,
@@ -13,7 +12,7 @@ import { SessionPresenter, SessionViewInterface } from './presenters/sessions'
 import { Duration } from '../models/Duration'
 
 export class SessionController {
-  private storage: SessionDataGatewayInterface
+  private storage: LocalStorageDataGateway
   private presenter: SessionPresenterInterface
   private mainController: MainSessionController
 
@@ -45,5 +44,9 @@ export class SessionController {
     }
     console.log('Session Controller...', request, this.mainController)
     this.mainController.endSession(this.endCommand, request)
+  }
+
+  clear() {
+    this.storage.clearStorage()
   }
 }

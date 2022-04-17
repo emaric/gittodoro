@@ -26,8 +26,11 @@ export const MainClock: FC = () => {
   const [record, setRecord] = useState<Record | undefined>(undefined)
   const [records, setRecords] = useState<Record[]>([])
 
+
   const handleClick = useCallback(async (event: MouseEvent<SVGCircleElement>) => {
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
     if (!session || session?.end) {
+      await delay(1000)
       await Promise.resolve(start())
     } else {
       await Promise.resolve(stop())
