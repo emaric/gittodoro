@@ -65,8 +65,10 @@ export const MainClock: FC = () => {
       setRecords(records.concat(record))
       const ms = (session.timer.duration + Session.TIMER_DELAY) * 1000
       const timeout = setTimeout(() => {
-        session.switchTimer()
-        setRecord(createRecord(session))
+        if (!session.end) {
+          session.switchTimer()
+          setRecord(createRecord(session))
+        }
       }, ms)
       return () => clearTimeout(timeout)
     }

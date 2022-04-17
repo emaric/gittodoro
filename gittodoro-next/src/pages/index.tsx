@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <main>
           <h1 className={styles.title}>git<span>todo</span>ro</h1>
-          <section>
+          <section className={styles.main_clock_container}>
             <MainClock />
           </section>
         </main>

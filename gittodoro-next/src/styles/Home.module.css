@@ -12,9 +12,10 @@
   height: 100vh;
 }
 
-.container main section {
+.main_clock_container {
   width: 100%;
   max-width: 30rem;
+  min-width: 100px;
 }
 
 .container footer {
