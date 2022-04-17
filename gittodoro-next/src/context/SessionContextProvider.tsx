@@ -1,8 +1,8 @@
 import { FC, ReactNode, createContext, useContext, useState, useMemo, useCallback } from "react"
 
-import { SessionController } from "@/modules/gittodoro/controllers/SessionController"
-import { SessionView } from "@/modules/gittodoro/views/SessionView"
 import { Session as ModuleSession } from "@/modules/gittodoro/models/Session"
+import { SessionView } from "@/modules/gittodoro/views/SessionView"
+import { SessionController } from "@/modules/gittodoro/controllers/SessionController"
 
 import { Session } from "@/models/Session"
 

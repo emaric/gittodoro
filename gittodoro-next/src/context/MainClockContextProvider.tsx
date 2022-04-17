@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react"
 
-import { Clock } from "@/models/Clock"
 import * as DateTime from "@/modules/temporal/DateTime"
+
+import { Clock } from "@/models/Clock"
 
 
 type MainClockContext = {
