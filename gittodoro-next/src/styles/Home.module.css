@@ -37,6 +37,7 @@
   letter-spacing: 2px;
   cursor: default;
   text-transform: uppercase;
+  padding: 0.4rem 0 0 0;
 }
 
 .title span {
