@@ -33,7 +33,7 @@ export const MainClock: FC = () => {
       await Promise.resolve(stop())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [start, stop])
+  }, [session, start, stop])
 
   const updateCountdownTimer = useCallback(() => {
     setCountdown(false)
@@ -57,8 +57,7 @@ export const MainClock: FC = () => {
       }
       setRecord(undefined)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session])
+  }, [session, record])
 
   useEffect(() => {
     updateCountdownTimer()

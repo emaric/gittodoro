@@ -33,7 +33,7 @@
 .title {
   color: white;
   font-size: 0.8rem;
-  font-weight: 100;
+  /* font-weight: 400; */
   letter-spacing: 2px;
   cursor: default;
   text-transform: uppercase;
@@ -44,4 +44,10 @@
   margin: 4px;
   /* font-size: 2rem; */
   /* vertical-align: sub; */
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  .title {
+    color: rgb(0, 30, 29);
+  }
 }

@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/clock/ClockSecondsRing.tsx",
-    "src/modules/temporal/index.js"
+    "src/modules/temporal/index.ts"
   ],
   "exclude": ["node_modules"]
 }

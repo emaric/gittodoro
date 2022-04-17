@@ -20,8 +20,8 @@ const createClock = () => {
   const end = start.add({ minutes: 2 })
   console.log("MainClock", start.toString(), end.toString())
   const testClock = new Clock(start, end)
-  // return new Clock()
-  return testClock;
+  return new Clock()
+  // return testClock;
 }
 
 export const MainClockProvider = (props: { children: JSX.Element }) => {

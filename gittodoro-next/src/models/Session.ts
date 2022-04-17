@@ -1,6 +1,6 @@
 import { Session as SessionView } from '@/modules/gittodoro/models/Session'
 import { State } from '@/modules/gittodoro/models/State'
-import { now } from '@/modules/temporal/DateTime'
+import { fromISO } from '@/modules/temporal/DateTime'
 
 export class Session extends SessionView {
   static TIMER_DELAY = 2
@@ -14,6 +14,8 @@ export class Session extends SessionView {
   }
 
   get endPlainDateTime() {
-    return now()
+    if (this.end) {
+      return fromISO(this.end.toISOString())
+    }
   }
 }

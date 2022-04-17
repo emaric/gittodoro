@@ -1,4 +1,4 @@
-import Temporal from './index'
+import Temporal from '@/modules/temporal/index'
 
 export type DateTimeType = Temporal.PlainDateTime
 
@@ -30,5 +30,12 @@ export const utc = () => {
 }
 
 export const fromISO = (iso: string): DateTimeType => {
-  return Temporal.PlainDateTime.from(iso)
+  return Temporal.PlainDateTime.from(iso.replace('Z', ''))
+}
+
+export const fromUTC = (utcDate: Date): DateTimeType => {
+  const local = new Date(
+    utcDate.getTime() - utcDate.getTimezoneOffset() * 60 * 1000
+  )
+  return fromISO(local.toISOString())
 }
