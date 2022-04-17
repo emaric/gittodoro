@@ -1,11 +1,11 @@
-import { Session as SessionView } from '@/modules/gittodoro/models/Session'
+import { Session as SessionViewModel } from '@/modules/gittodoro/models/Session'
 import { State } from '@/modules/gittodoro/models/State'
 import { DateTimeType, fromUTC } from '@/modules/temporal/DateTime'
 
-export class Session extends SessionView {
+export class Session extends SessionViewModel {
   static TIMER_DELAY = 2
 
-  constructor(session: SessionView) {
+  constructor(session: SessionViewModel) {
     super(session)
   }
 

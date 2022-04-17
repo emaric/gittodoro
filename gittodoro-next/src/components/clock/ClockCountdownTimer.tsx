@@ -1,5 +1,5 @@
+import { useEffect, useState, useMemo, useCallback } from "react";
 import Head from "next/head";
-import { FC, useEffect, useState, useMemo, useCallback } from "react";
 
 import styles from './Clock.module.css'
 
@@ -12,7 +12,7 @@ interface Props {
 const MAX_MINUTES = 300
 const MAX_SECONDS = 60
 
-const ClockCountdownTimer: FC<Props> = ({ state, initialDuration, running = false }) => {
+const ClockCountdownTimer = ({ state, initialDuration, running = false }: Props) => {
   const minutes = useMemo(() => Math.floor(initialDuration / MAX_SECONDS) % (MAX_MINUTES + 1), [initialDuration])
   const seconds = useMemo(() => initialDuration % MAX_SECONDS, [initialDuration])
 
@@ -77,7 +77,7 @@ interface TextProps {
   y?: string
 }
 
-const Text: FC<TextProps> = (props) => {
+const Text = (props: TextProps) => {
   return (
     <text
       className={styles.clock_button_label}

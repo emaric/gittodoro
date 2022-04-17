@@ -1,0 +1,22 @@
+.container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.note_container {
+  background-color: rgba(255, 255, 254, 1);
+  min-height: 6rem;
+  padding: 0.8rem;
+  width: 100%;
+}
+
+.note_container .content {
+  padding: 0 1rem;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  .note_container {
+    background-color: rgb(0, 30, 29);
+  }
+}

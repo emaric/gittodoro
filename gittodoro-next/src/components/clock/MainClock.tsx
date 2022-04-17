@@ -1,4 +1,4 @@
-import { useState, MouseEvent, FC, useEffect, useCallback } from 'react'
+import { useState, MouseEvent, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 
 import { useMainClock } from '@/context/MainClockContextProvider'
@@ -13,7 +13,7 @@ import ClockCountdownTimer from './ClockCountdownTimer'
 import ClockActiveRing from './ClockActiveRing'
 import ClockRecordsRing from './ClockRecordsRing'
 
-export const MainClock: FC = () => {
+export const MainClock = () => {
   const { mainClock } = useMainClock()
   const { session, start, stop } = useSession()
 
