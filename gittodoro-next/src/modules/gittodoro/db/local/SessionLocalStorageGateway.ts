@@ -19,13 +19,13 @@ const mapToString = (sessions: Session[]) => {
   return JSON.stringify(sessions)
 }
 
-export class LocalStorageDataGateway implements SessionDataGatewayInterface {
+export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
   static SESSIONS_ID = 'gittodoro-sessions'
   static DEFAULT_DURATION_ID = 'gittodoro-default-duration'
 
   private updateSessions(sessions: Session[]) {
     localStorage.setItem(
-      LocalStorageDataGateway.SESSIONS_ID,
+      SessionLocalStorageGateway.SESSIONS_ID,
       mapToString(sessions)
     )
   }
@@ -91,7 +91,9 @@ export class LocalStorageDataGateway implements SessionDataGatewayInterface {
   }
 
   get sessions(): Session[] {
-    const sessions = localStorage.getItem(LocalStorageDataGateway.SESSIONS_ID)
+    const sessions = localStorage.getItem(
+      SessionLocalStorageGateway.SESSIONS_ID
+    )
     if (sessions) {
       return mapToEntity(sessions)
     }

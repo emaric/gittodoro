@@ -7,12 +7,12 @@ import { SessionPresenterInterface } from '@emaric/gittodoro-ts/lib/interactor/r
 import { StartSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/StartSessionCommand'
 import { EndSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/EndSessionCommand'
 
-import { LocalStorageDataGateway } from '../db/local'
+import { SessionLocalStorageGateway } from '../db/local/SessionLocalStorageGateway'
 import { SessionPresenter, SessionViewInterface } from './presenters/sessions'
 import { Duration } from '../models/Duration'
 
 export class SessionController {
-  private storage: LocalStorageDataGateway
+  private storage: SessionLocalStorageGateway
   private presenter: SessionPresenterInterface
   private mainController: MainSessionController
 
@@ -20,7 +20,7 @@ export class SessionController {
   private endCommand: EndSessionCommand
 
   constructor(sessionView: SessionViewInterface) {
-    this.storage = new LocalStorageDataGateway()
+    this.storage = new SessionLocalStorageGateway()
     this.presenter = new SessionPresenter(sessionView)
     this.mainController = new MainSessionController()
 

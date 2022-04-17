@@ -1,10 +1,10 @@
-import { LocalStorageDataGateway } from '../../db/local'
+import { SessionLocalStorageGateway } from '../../db/local/SessionLocalStorageGateway'
 
 import '../MockLocalStorage'
 
 describe('[local] unit tests', () => {
   describe('when trying to create sessions', () => {
-    const gateway = new LocalStorageDataGateway()
+    const gateway = new SessionLocalStorageGateway()
     const date = new Date('2022-04-15T00:01:00.000Z')
     let expectedSession: any
     it('should save to the localstorage as a json string list', () => {
@@ -16,7 +16,9 @@ describe('[local] unit tests', () => {
         longInterval: 4,
       })
 
-      const actual = localStorage.getItem(LocalStorageDataGateway.SESSIONS_ID)
+      const actual = localStorage.getItem(
+        SessionLocalStorageGateway.SESSIONS_ID
+      )
       const expected =
         '[{"id":0,"start":"2022-04-15T00:01:00.000Z","duration":{"id":-1,"pomodoro":50,"short":5,"long":15,"longInterval":4}}]'
 
