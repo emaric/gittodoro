@@ -29,6 +29,6 @@ export const utc = () => {
   return Temporal.Now.instant().toZonedDateTimeISO('UTC').toPlainDateTime()
 }
 
-export const fromISO = (iso: string) => {
+export const fromISO = (iso: string): DateTimeType => {
   return Temporal.PlainDateTime.from(iso)
 }

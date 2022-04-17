@@ -1,4 +1,5 @@
-import { DateTimeType, now } from '@/modules/temporal/DateTime'
+import { DateTimeType, difference, now } from '@/modules/temporal/DateTime'
+import { Clock } from './Clock'
 import { Session } from './Session'
 
 export type Record = {
@@ -13,4 +14,10 @@ export const createRecord = (session: Session): Record => {
     start: now(),
     end: now().add({ seconds: session.timer.duration + Session.TIMER_DELAY }),
   }
+}
+
+export const filterRecords = (clock: Clock, records: Record[]) => {
+  return records
+    .filter((record) => difference(record.end, clock.start) > 0)
+    .filter((record) => difference(clock.end, record.start) > 0)
 }

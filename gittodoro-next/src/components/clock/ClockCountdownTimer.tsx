@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { FC, useEffect, useState, useMemo, useCallback } from "react";
 
 import styles from './Clock.module.css'
@@ -34,33 +35,41 @@ const ClockCountdownTimer: FC<Props> = ({ state, initialDuration, running = fals
       const to = setTimeout(() => {
         decrementRemainingTime()
       }, 1000)
-
       return () => clearTimeout(to)
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [running, decrementRemainingTime])
 
   useEffect(() => {
     setRemainingMinutes(minutes)
     setRemainingSeconds(seconds)
-  }, [initialDuration, minutes, seconds])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialDuration])
+
+  const displayMinutes = useMemo(() => (remainingMinutes < 10 ? "0" : "") + remainingMinutes, [remainingMinutes])
+  const displaySeconds = useMemo(() => (remainingSeconds < 10 ? "0" : "") + remainingSeconds, [remainingSeconds])
 
   return (
     <>
+      <Head>
+        <title>
+          {displayMinutes}:{displaySeconds}
+        </title>
+      </Head>
       {remainingMinutes >= 100 &&
         <Text value={Math.floor(remainingMinutes / 100)} x={"16%"} state={state} />
       }
-      <Text value={Math.floor(remainingMinutes / 10) % 10} x={"27%"} state={state} />
-      <Text value={remainingMinutes % 10} x={"40%"} state={state} />
+      <Text value={displayMinutes.at(-2)} x={"27%"} state={state} />
+      <Text value={displayMinutes.at(-1)} x={"40%"} state={state} />
       <Text value=":" x={"50%"} y="48%" state={state} />
-      <Text value={Math.floor(remainingSeconds / 10)} x={"60%"} state={state} />
-      <Text value={remainingSeconds % 10} x={"73%"} state={state} />
+      <Text value={displaySeconds[0]} x={"60%"} state={state} />
+      <Text value={displaySeconds[1]} x={"73%"} state={state} />
     </>
   )
 }
 
 interface TextProps {
-  value: string | number,
+  value?: string | number,
   state: string,
   x: string,
   y?: string

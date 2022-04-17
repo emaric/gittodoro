@@ -3,7 +3,7 @@ import { useState, MouseEvent, FC, useEffect, useCallback } from 'react'
 import { useMainClock } from '@/context/MainClockContextProvider'
 import { useSession } from '@/context/SessionContextProvider'
 import { Session } from '@/models/Session'
-import { Record, createRecord } from '@/models/Record'
+import { Record, createRecord, filterRecords } from '@/models/Record'
 
 import ClockBase from "./ClockBase"
 import ClockButton from "./ClockButton"
@@ -25,69 +25,78 @@ export const MainClock: FC = () => {
   const [record, setRecord] = useState<Record | undefined>(undefined)
   const [records, setRecords] = useState<Record[]>([])
 
-  const handleClick = async (event: MouseEvent<SVGCircleElement>) => {
+  const handleClick = useCallback(async (event: MouseEvent<SVGCircleElement>) => {
     if (!session || session?.end) {
       await Promise.resolve(start())
-      setCountdown(true)
     } else {
-      setCountdown(false)
       await Promise.resolve(stop())
     }
-  }
-
-  const updateRecords = useCallback(() => {
-    if (record) {
-      setRecords(records.concat(record))
-    }
-  }, [record, records])
-
-  const updateRecord = useCallback(() => {
-    if (!session || session?.end) {
-      setRecord(undefined)
-    } else {
-      setRecord(createRecord(session))
-    }
-  }, [session])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [start, stop])
 
   const updateCountdownTimer = useCallback(() => {
+    setCountdown(false)
     if (!session || session?.end) {
-      setCountdown(false)
-      setRemainingTime(defaultPomodoro)
       setState("")
+      setRemainingTime(defaultPomodoro)
     } else {
-      setCountdown(false)
-      setRemainingTime(session.timer.duration)
       setState(session.stateString)
+      setRemainingTime(session.timer.duration)
       setCountdown(true)
     }
-  }, [defaultPomodoro, session])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session])
 
-  useEffect(() => {
+  const updateRecord = useCallback(() => {
     if (session && !session.end) {
-      const to = setTimeout(() => {
-        session.switchTimer()
-        updateCountdownTimer()
-        updateRecord()
-        updateRecords()
-      }, (remainingTime + Session.TIMER_DELAY) * 1000)
-
-      return () => clearTimeout(to)
+      setRecord(createRecord(session))
+    } else {
+      if (record && session?.endPlainDateTime) {
+        record.end = session.endPlainDateTime
+      }
+      setRecord(undefined)
     }
-  }, [remainingTime, session, updateCountdownTimer, updateRecord, updateRecords])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session])
 
   useEffect(() => {
     updateCountdownTimer()
+    if (record && session) {
+      setRecords(records.concat(record))
+      const ms = (session.timer.duration + Session.TIMER_DELAY) * 1000
+      const timeout = setTimeout(() => {
+        session.switchTimer()
+        setRecord(createRecord(session))
+      }, ms)
+      return () => clearTimeout(timeout)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [record])
+
+  useEffect(() => {
     updateRecord()
-  }, [updateCountdownTimer, updateRecord])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session])
+
+  useEffect(() => {
+    if (mainClock) {
+      setRecords(filterRecords(mainClock, records))
+    } else {
+      setRecords([])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mainClock])
 
   return (
-    <ClockBase>
-      {mainClock && <ClockSecondsRing clock={mainClock} />}
-      {mainClock && <ClockRecordsRing clock={mainClock} records={records} />}
-      {mainClock && <ClockActiveRing clock={mainClock} record={record} />}
-      <ClockButton onClick={handleClick}>
-        <ClockCountdownTimer initialDuration={remainingTime} state={state} running={countdown} />
-      </ClockButton>
-    </ClockBase>
+    <>
+      <ClockBase>
+        {mainClock && <ClockSecondsRing clock={mainClock} />}
+        {mainClock && <ClockRecordsRing clock={mainClock} records={records} />}
+        {mainClock && <ClockActiveRing clock={mainClock} record={record} />}
+        <ClockButton onClick={handleClick}>
+          <ClockCountdownTimer initialDuration={remainingTime} state={state} running={countdown} />
+        </ClockButton>
+      </ClockBase>
+    </>
   )
 }

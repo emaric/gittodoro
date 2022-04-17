@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 
 import * as DateTime from "@/modules/temporal/DateTime"
 import { Clock } from "@/models/Clock"
-import { Record } from "@/models/Record"
+import { Record, filterRecords as filterRecordsUtil } from "@/models/Record"
 
 import ClockRing from "./ClockRing"
 
@@ -16,11 +16,7 @@ const ClockRecordsRing = ({ clock, records }: Props) => {
   const [filteredRecords, setFilteredRecords] = useState<Record[]>([])
 
   const filterRecords = useCallback(() => {
-    console.log('ClockRecordsRing...', records.length)
-    const filtered = records
-      .filter((record) => DateTime.difference(record.end, clock.start) > 0)
-      .filter((record) => DateTime.difference(clock.end, record.start) > 0)
-    setFilteredRecords(filtered)
+    setFilteredRecords(filterRecordsUtil(clock, records))
   }, [clock, records])
 
   useEffect(() => {

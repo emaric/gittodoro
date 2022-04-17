@@ -43,6 +43,10 @@ export class CircularLinkedList<T> {
     return this.currentNode.data
   }
 
+  get originalIndex(): number {
+    return this.currentNode.originalIndex
+  }
+
   next(): T {
     if (this.currentNode.next) this.currentNode = this.currentNode.next
     return this.current

@@ -37,7 +37,7 @@ const ClockSecondsRing: FC<Props> = ({ clock }) => {
       )
       setAnimation(clock.remaining > 0 ? Animation.Reset : Animation.Hide)
     }
-  }, [clock, ref, setAnimation])
+  }, [clock])
 
   useEffect(() => {
     if (animation != Animation.Start) {
@@ -47,7 +47,7 @@ const ClockSecondsRing: FC<Props> = ({ clock }) => {
     if (animation == Animation.Reset) {
       setAnimation(Animation.Start)
     }
-  }, [animation, ref, setAnimation])
+  }, [animation])
 
   const props = {
     animation: animation
