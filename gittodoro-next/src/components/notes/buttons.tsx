@@ -28,7 +28,7 @@ export const Add = ({ onClick }: Props) => {
   }, [isDisabled])
 
   return (
-    <a onClick={handleOnClick} className={styles.add_button} href="#AddNewNote">ADD NEW</a>
+    <a onClick={handleOnClick} className={styles.add_button} href="#AddNewNote">ADD A NOTE</a>
   )
 }
 

@@ -15,7 +15,7 @@ interface Props {
   onClickDelete?: (note: Note) => void
 }
 export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }: Props) => {
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(editing)
   const [isVisible, setIsVisible] = useState(true)
 
   const handleEdit = useCallback(() => {
