@@ -113,6 +113,7 @@
   fill: var(--clock-button-label-color);
   text-transform: uppercase;
   font-weight: 1;
+  font-size: 0.55rem;
 }
 
 .clock_button_label[state="pomodoro"] {

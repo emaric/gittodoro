@@ -7,6 +7,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: 400;
   color: #0f3433;
+  font-size: 14px;
 }
 
 a {
@@ -23,6 +24,10 @@ button {
   font-size: 1rem;
   cursor: pointer;
   color: #001e1d;
+}
+
+h1 {
+  font-size: 1.8rem;
 }
 
 h1,
