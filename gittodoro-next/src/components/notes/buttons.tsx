@@ -1,48 +1,80 @@
+import { MouseEvent, useCallback, useEffect, useState } from 'react'
+
 import styles from './Note.module.css'
 
 import * as Icon from './icons'
 
-export const Add = () => {
+interface Props {
+  onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void
+}
+
+export const Add = ({ onClick }: Props) => {
+  const [isDisabled, setIsDisabled] = useState(false)
+
+  const handleOnClick = useCallback((event: MouseEvent<HTMLAnchorElement>) => {
+    if (onClick && !isDisabled) {
+      setIsDisabled(true)
+      onClick && onClick(event)
+    }
+  }, [onClick, isDisabled])
+
+  useEffect(() => {
+    if (isDisabled) {
+      const timeout = setTimeout(() => {
+        setIsDisabled(false)
+      }, 1000)
+      return () => clearTimeout(timeout)
+    }
+  }, [isDisabled])
+
   return (
-    <a className={styles.add_button} href="#">ADD NOTE</a>
+    <a onClick={handleOnClick} className={styles.add_button} href="#AddNewNote">ADD NEW</a>
   )
 }
 
-export const Edit = () => {
+export const Edit = ({ onClick }: Props) => {
   return (
-    <button title='Edit'>
+    <button onClick={onClick} title='Edit'>
       <Icon.Edit />
     </button>
   )
 }
 
-export const Delete = () => {
+export const Delete = ({ onClick }: Props) => {
   return (
-    <button title='Delete'>
+    <button onClick={onClick} title='Delete'>
       <Icon.Delete />
     </button>
   )
 }
 
-export const Copy = () => {
+export const Copy = ({ onClick }: Props) => {
   return (
-    <button title='Copy'>
+    <button onClick={onClick} title='Copy'>
       <Icon.Copy />
     </button>
   )
 }
 
-export const Hide = () => {
+export const Hide = ({ onClick }: Props) => {
   return (
-    <button className={styles.secondary_button} title='Hide'>
+    <button onClick={onClick} className={styles.secondary_button} title='Hide'>
       <Icon.Hide />
     </button>
   )
 }
 
-export const Close = () => {
+export const Show = ({ onClick }: Props) => {
   return (
-    <button title='Close'>
+    <button onClick={onClick} className={styles.secondary_button} title='Hide'>
+      <Icon.Show />
+    </button>
+  )
+}
+
+export const Close = ({ onClick }: Props) => {
+  return (
+    <button onClick={onClick} title='Close Editor'>
       <Icon.Close />
     </button>
   )

@@ -1,27 +1,77 @@
+import { useCallback, useEffect, useState } from "react"
 
 import { Note } from "@/models/Note"
 
 import styles from './Note.module.css'
-import { NoteContent } from "./NoteContent"
 import * as Button from "./buttons"
+import { NoteContent } from "./NoteContent"
+import { NoteContentEditor } from "./NoteContentEditor"
 
 interface Props {
   note: Note
+  editing: boolean
+  onChange: (note: Note) => void
+  onClickEdit?: (note: Note, editing: boolean) => void
+  onClickDelete?: (note: Note) => void
 }
-export const MainNote = ({ note }: Props) => {
+export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }: Props) => {
+  const [isEditing, setIsEditing] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+
+  const handleEdit = useCallback(() => {
+    onClickEdit && onClickEdit(note, !isEditing)
+    setIsEditing(!isEditing)
+  }, [isEditing, onClickEdit, note])
+
+  const handleToggleVisibility = useCallback(() => {
+    setIsVisible(!isVisible)
+  }, [isVisible, setIsVisible])
+
+  const handleDelete = useCallback(() => {
+    onClickDelete && onClickDelete(note)
+  }, [onClickDelete, note])
+
+  useEffect(() => {
+    if (isEditing) {
+      setIsVisible(true)
+    }
+  }, [isEditing])
+
+  useEffect(() => {
+    setIsEditing(editing)
+  }, [editing])
+
   return (
     <article className={styles.note_container}>
       <div className={styles.header}>
-        <Button.Hide />
+        {isVisible ?
+          <Button.Hide onClick={handleToggleVisibility} />
+          :
+          <Button.Show onClick={handleToggleVisibility} />
+        }
+
+        <label>{note.date.toLocaleString()}</label>
         <div className={styles.buttons_container}>
-          <Button.Delete />
-          <Button.Edit />
-          <Button.Copy />
+          {isEditing ?
+            <Button.Close onClick={handleEdit} />
+            :
+            <>
+              <Button.Delete onClick={handleDelete} />
+              <Button.Edit onClick={handleEdit} />
+              <Button.Copy />
+            </>
+          }
         </div>
       </div>
-      <div className={styles.content}>
-        <NoteContent>{note.content}</NoteContent>
-      </div>
+      {isVisible &&
+        <div className={styles.content}>
+          {isEditing ?
+            <NoteContentEditor note={note} onChange={onChange} />
+            :
+            <NoteContent>{note.content}</NoteContent>
+          }
+        </div>
+      }
     </article>
   )
 }

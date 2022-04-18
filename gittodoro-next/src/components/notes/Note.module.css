@@ -1,12 +1,14 @@
 .container {
   display: inline-flex;
   flex-wrap: wrap;
+  flex-direction: column-reverse;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .note_container {
   background-color: rgba(255, 255, 254, 1);
-  min-height: 6rem;
+  /* min-height: 6rem; */
   padding: 0.2rem;
   width: 100%;
 }
@@ -14,10 +16,17 @@
 .note_container .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom-width: 1px;
   border-bottom-style: dotted;
   border-color: #abd1c6;
   visibility: hidden;
+}
+
+.note_container .header label {
+  font-size: 0.5rem;
+  width: 12rem;
+  visibility: visible !important;
 }
 
 .note_container:hover  .header {
@@ -29,13 +38,16 @@
 }
 
 .note_container button {
-  padding: 0 2px;
+  padding: 0 1px;
   font-size: 0.8rem;
+  width: 1.5rem;
+  border-width: 1px;
 }
 
 .buttons_container {
   display: flex;
   justify-content: right;
+  align-items: center;
   width: 100%;
 }
 
@@ -43,7 +55,6 @@
   background-color: transparent;
   border-width: 1px;
   border-color: #abd1c6;
-  width: 1.5rem;
   color: rgb(249, 188, 96);
 }
 
