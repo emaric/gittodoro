@@ -48,6 +48,11 @@ h6 {
   margin: 0;
 }
 
+.notification {
+  background: '#333';
+  color: '#fff';
+}
+
 @media screen and (prefers-color-scheme: dark) {
   html,
   body {
@@ -62,6 +67,11 @@ h6 {
   h5,
   h6 {
     color: #fffffe;
+  }
+
+  .notification {
+    background: '#333';
+    color: '#fff';
   }
 
 }

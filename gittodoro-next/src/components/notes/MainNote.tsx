@@ -6,6 +6,7 @@ import styles from './Note.module.css'
 import * as Button from "./buttons"
 import { NoteContent } from "./NoteContent"
 import { NoteContentEditor } from "./NoteContentEditor"
+import { confirmDeleteNote, notifyCopied } from "./notifications"
 
 interface Props {
   note: Note
@@ -28,12 +29,17 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
   }, [isVisible, setIsVisible])
 
   const handleDelete = useCallback(() => {
-    onClickDelete && onClickDelete(note)
+    confirmDeleteNote({
+      onDelete: () => {
+        onClickDelete && onClickDelete(note)
+      }
+    })
   }, [onClickDelete, note])
 
   const handleCopy = useCallback(async () => {
     if (note) {
       await navigator.clipboard.writeText(note.content)
+      notifyCopied()
     }
   }, [note])
 

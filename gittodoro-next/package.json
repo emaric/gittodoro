@@ -19,6 +19,7 @@
     "@js-temporal/polyfill": "^0.4.1",
     "core-js": "^3.22.0",
     "next": "12.1.4",
+    "notiflix": "^3.2.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.1",
