@@ -31,6 +31,12 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
     onClickDelete && onClickDelete(note)
   }, [onClickDelete, note])
 
+  const handleCopy = useCallback(async () => {
+    if (note) {
+      await navigator.clipboard.writeText(note.content)
+    }
+  }, [note])
+
   useEffect(() => {
     if (isEditing) {
       setIsVisible(true)
@@ -58,7 +64,7 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
             <>
               <Button.Delete onClick={handleDelete} />
               <Button.Edit onClick={handleEdit} />
-              <Button.Copy />
+              <Button.Copy onClick={handleCopy} />
             </>
           }
         </div>
