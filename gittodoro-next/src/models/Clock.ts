@@ -29,4 +29,12 @@ export class Clock {
   get ended() {
     return this.remaining <= 0
   }
+
+  get startDate() {
+    return new Date(this.start.toString())
+  }
+
+  get endDate() {
+    return new Date(this.end.toString())
+  }
 }

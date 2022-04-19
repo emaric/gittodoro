@@ -13,6 +13,7 @@ export class SessionPresenter implements SessionPresenterInterface {
   constructor(sessionView: SessionViewInterface) {
     this.sessionView = sessionView
   }
+
   present(response: SessionResponse): void {
     this.sessionView.updateView(mapSession(response))
   }

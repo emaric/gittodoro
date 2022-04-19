@@ -21,6 +21,22 @@ const mapToString = (notes: Note[]) => {
 
 export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
   static NOTES_ID = 'gittodoro-notes'
+  static NOTES_LAST_ID = 'gittodoro-notes-id'
+
+  private get lastID() {
+    const lastIDString = localStorage.getItem(
+      NoteLocalStorageGateway.NOTES_LAST_ID
+    )
+    if (lastIDString) {
+      return Number(lastIDString)
+    } else {
+      return 0
+    }
+  }
+
+  private updateLastID(id: number) {
+    localStorage.setItem(NoteLocalStorageGateway.NOTES_LAST_ID, String(id))
+  }
 
   private updateNotes(notes: Note[]) {
     localStorage.setItem(NoteLocalStorageGateway.NOTES_ID, mapToString(notes))
@@ -35,12 +51,13 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
   }
 
   create(note: Note): Note {
-    const id = this.notes.length
+    const id = this.lastID + 1
     const newNote: Note = {
       ...note,
       id: id,
     }
     this.updateNotes(this.notes.concat(newNote))
+    this.updateLastID(id)
     return this.read(id)
   }
 
@@ -73,5 +90,15 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
 
   delete(id: number): void {
     this.updateNotes(this.notes.filter((note) => note.id != id))
+  }
+
+  readByRange(start: Date, end: Date): Note[] {
+    const notesInRange = this.notes.filter((note) => {
+      if (note.date.getTime() >= start.getTime()) {
+        return true
+      }
+      return end.getTime() >= start.getTime()
+    })
+    return notesInRange
   }
 }

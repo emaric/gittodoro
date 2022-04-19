@@ -4,6 +4,9 @@ import { StateTimer as StateTimerResponse } from '@emaric/gittodoro-ts/lib/inter
 import { StateTimer } from '@/modules/gittodoro/models/StateTimer'
 import { State } from '@/modules/gittodoro/models/State'
 
+import { NoteResponse } from '@emaric/gittodoro-ts/lib/interactor/responses/NoteResponse'
+import { Note } from '@/modules/gittodoro/models/Note'
+
 export const mapTimerSequence = (
   timerSequence: StateTimerResponse[]
 ): StateTimer[] => {
@@ -21,4 +24,30 @@ export const mapSession = (sessionResponse: SessionResponse): Session => {
   })
 
   return session
+}
+
+export const mapNote = (noteResponse: NoteResponse): Note => {
+  const note = new Note({
+    ...noteResponse,
+    id: noteResponse.id ? noteResponse.id : -1,
+    date: noteResponse.date ? noteResponse.date : new Date(),
+    content: noteResponse.content ? noteResponse.content : '',
+  })
+
+  return note
+}
+
+export const mapNotes = (noteResponse: NoteResponse): Note[] => {
+  if (noteResponse.notes) {
+    return noteResponse.notes.map(
+      (note) =>
+        new Note({
+          ...note,
+          id: note.id ? note.id : -1,
+          date: note.date ? note.date : new Date(),
+          content: note.content ? note.content : '',
+        })
+    )
+  }
+  return []
 }
