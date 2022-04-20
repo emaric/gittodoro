@@ -20,17 +20,32 @@
   border-bottom-width: 1px;
   border-bottom-style: dotted;
   border-color: #abd1c6;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
-.note_container .header label {
-  font-size: 0.5rem;
+.note_container .header > label {
+  font-size: 0.7rem;
   width: 12rem;
   visibility: visible !important;
 }
 
 .note_container:hover  .header {
   visibility: visible;
+}
+
+.note_container .footer {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  border-top-width: 1px;
+  border-top-style: dotted;
+  border-color: #abd1c6; 
+  margin-top: 3px;
+  padding: 2px;
+}
+
+.note_container .footer > label {
+  font-size: 0.7rem;
 }
 
 .note_container .content {
@@ -72,7 +87,7 @@
   resize: vertical;
   min-height: 8rem;
   font-size: 1rem;
-  height: calc(1rem * 50);
+  height: calc(1rem * 17);
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -95,6 +110,10 @@
   }
 
   .note_container .header {
+    border-color: #004643;
+  }
+
+  .note_container .footer {
     border-color: #004643;
   }
 }
