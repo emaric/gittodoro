@@ -20,7 +20,7 @@
   border-bottom-width: 1px;
   border-bottom-style: dotted;
   border-color: #abd1c6;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .note_container .header label {
@@ -34,14 +34,15 @@
 }
 
 .note_container .content {
-  padding: 1px 2px 1px 20px;
+  padding: 1px 2px 1px 22px;
 }
 
 .note_container button {
-  padding: 0 1px;
-  font-size: 0.8rem;
-  width: 1.5rem;
+  padding: 2px 5px;
+  margin: 2px;
   border-width: 1px;
+  font-size: 0.8rem;
+  /* border-width: 1px; */
 }
 
 .buttons_container {
@@ -53,14 +54,14 @@
 
 .secondary_button {
   background-color: transparent;
-  border-width: 1px;
+  /* border-width: 1px; */
   border-color: #abd1c6;
   color: rgb(249, 188, 96);
 }
 
 .add_button {
   padding: 2px 6px 0 6px;
-  border-width: 0;
+  /* border-width: 0; */
   /* font-size: 1.5rem; */
   font-size: 0.8rem;
 }
@@ -70,6 +71,9 @@
   border: 1px solid transparent; 
   resize: vertical;
   min-height: 8rem;
+  font-size: 1rem;
+  height: calc(1rem * 50);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .note_container textarea:focus-visible {
