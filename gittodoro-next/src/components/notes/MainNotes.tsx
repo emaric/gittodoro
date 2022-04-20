@@ -13,20 +13,7 @@ export const MainNotes = () => {
   const [openNote, setOpenNote] = useState<Note | undefined>(undefined)
 
   const handleAddNote = useCallback(async () => {
-    await Promise.resolve(createNote(`**Interruptions**
-- write internal/external interruptions here
-- you can deal with them later
- \\
- \\
-**Tasks**
-1. [ ] write the tasks you want to focus on
-1. [x] check the tasks you finished
-  \\
-  \\
-**Additional notes:**
-- write the problems you encountered
-- write the solutions you used to solve the problems
-- make sure to take breaks!`, new Date()))
+    await Promise.resolve(createNote('', new Date()))
   }, [createNote])
 
   const handleChange = useCallback((n: Note) => {
