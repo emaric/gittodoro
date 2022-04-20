@@ -89,4 +89,8 @@
     background-color: rgb(0, 30, 29);
     color: rgb(171, 209, 198);
   }
+
+  .note_container .header {
+    border-color: #004643;
+  }
 }

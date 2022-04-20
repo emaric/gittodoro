@@ -63,7 +63,7 @@ describe('[DateTime] unit tests', () => {
   })
 
   it('fromUTC', () => {
-    const now = new Date()
+    const now = new Date('2022-04-20T14:54:08.088Z')
     const local = new Date(now.getTime() - now.getTimezoneOffset() * 60 * 1000)
     const expected = local.toISOString().replace('Z', '')
     expect(DateTime.fromUTC(now).toString()).toBe(expected)

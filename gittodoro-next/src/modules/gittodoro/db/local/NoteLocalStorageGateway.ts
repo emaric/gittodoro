@@ -30,7 +30,7 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
     if (lastIDString) {
       return Number(lastIDString)
     } else {
-      return 0
+      return -1
     }
   }
 

@@ -43,6 +43,10 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
     }
   }, [note])
 
+  const handleMarkdownChanged = useCallback((content: string) => {
+    onChange({ ...note, content })
+  }, [note, onChange])
+
   useEffect(() => {
     if (isEditing) {
       setIsVisible(true)
@@ -80,7 +84,7 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
           {isEditing ?
             <NoteContentEditor note={note} onChange={onChange} />
             :
-            <NoteContent>{note.content}</NoteContent>
+            <NoteContent onChange={handleMarkdownChanged}>{note.content}</NoteContent>
           }
         </div>
       }

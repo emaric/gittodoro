@@ -9,11 +9,11 @@ import * as Button from './buttons'
 import { MainNote } from './MainNote'
 
 export const MainNotes = () => {
-  const { mainNotes: notes, mainNote, createNote, updateNote, deleteNote } = useMainNotes()
+  const { mainNotes: notes, newNote, createNote, updateNote, deleteNote } = useMainNotes()
   const [openNote, setOpenNote] = useState<Note | undefined>(undefined)
 
-  const handleAddNote = useCallback(() => {
-    createNote('[insert note template]', new Date())
+  const handleAddNote = useCallback(async () => {
+    await Promise.resolve(createNote('[insert note template]', new Date()))
   }, [createNote])
 
   const handleChange = useCallback((n: Note) => {
@@ -33,12 +33,10 @@ export const MainNotes = () => {
   }, [deleteNote])
 
   useEffect(() => {
-    console.log('MainNotes.tsx : mainNote', mainNote)
-  }, [mainNote])
-
-  useEffect(() => {
-    console.log('MainNotes.tsx : mainNotes', notes)
-  }, [notes])
+    if (newNote) {
+      setOpenNote(newNote)
+    }
+  }, [newNote])
 
   return (
     <>
