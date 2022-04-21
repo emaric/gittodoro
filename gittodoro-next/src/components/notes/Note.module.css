@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.note_container a {
+  color: #f9bc60;
+}
+
 .note_container .header {
   display: flex;
   justify-content: space-between;
