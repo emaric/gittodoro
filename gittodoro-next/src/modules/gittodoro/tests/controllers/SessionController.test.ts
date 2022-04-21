@@ -27,7 +27,7 @@ describe('[SessionController] unit tests', () => {
   const controller = new SessionController(testView)
 
   const expected = {
-    id: '-1',
+    id: 0,
     start: new Date(),
     timerSequence: [
       { state: 0, duration: 10 },

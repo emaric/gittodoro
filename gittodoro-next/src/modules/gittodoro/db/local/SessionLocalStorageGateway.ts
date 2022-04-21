@@ -21,12 +21,31 @@ const mapToString = (sessions: Session[]) => {
 
 export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
   static SESSIONS_ID = 'gittodoro-sessions'
+  static SESSIONS_LAST_ID = 'gittodoro-sessions-last-id'
   static DEFAULT_DURATION_ID = 'gittodoro-default-duration'
 
   private updateSessions(sessions: Session[]) {
     localStorage.setItem(
       SessionLocalStorageGateway.SESSIONS_ID,
       mapToString(sessions)
+    )
+  }
+
+  private get lastID() {
+    const lastIDString = localStorage.getItem(
+      SessionLocalStorageGateway.SESSIONS_LAST_ID
+    )
+    if (lastIDString) {
+      return Number(lastIDString)
+    } else {
+      return -1
+    }
+  }
+
+  private updateLastID(id: number) {
+    localStorage.setItem(
+      SessionLocalStorageGateway.SESSIONS_LAST_ID,
+      String(id)
     )
   }
 
@@ -37,9 +56,10 @@ export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
     long: number
     longInterval: number
   }): Session {
+    const id = this.lastID + 1
     const session = new Session({
       ...args,
-      id: this.sessions.length,
+      id,
       duration: new Duration({
         ...args,
         id: -1,
@@ -48,10 +68,9 @@ export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
 
     const sessions = this.sessions
     sessions.push(session)
-
     this.updateSessions(sessions)
-
-    return session
+    this.updateLastID(id)
+    return this.readSession(session.start)
   }
 
   readSession(start: Date): Session {
@@ -101,7 +120,7 @@ export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
   }
 
   viewSessionsByRange(start: Date, end: Date): Session[] {
-    return this.sessions.filter((session: Session) => {
+    const sessions = this.sessions.filter((session: Session) => {
       if (
         session.start.getTime() >= start.getTime() &&
         session.start.getTime() < end.getTime()
@@ -121,5 +140,6 @@ export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
 
       return false
     })
+    return sessions
   }
 }

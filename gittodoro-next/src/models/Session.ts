@@ -18,4 +18,8 @@ export class Session extends SessionViewModel {
       return fromUTC(this.end)
     }
   }
+
+  get startPlainDateTime(): DateTimeType {
+    return fromUTC(this.start)
+  }
 }

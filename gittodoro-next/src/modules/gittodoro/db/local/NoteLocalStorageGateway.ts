@@ -54,7 +54,7 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
     const id = this.lastID + 1
     const newNote: Note = {
       ...note,
-      id: id,
+      id,
     }
     this.updateNotes(this.notes.concat(newNote))
     this.updateLastID(id)
@@ -68,7 +68,7 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
     if (found) {
       return found
     } else {
-      throw new Error('Note not found.')
+      throw new Error('Note not found. ID: ' + id)
     }
   }
 

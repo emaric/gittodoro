@@ -31,7 +31,7 @@ export const MainNotesProvider = (props: { children: ReactNode }) => {
       }
 
       updateReadView(note: Note) {
-        setNewNote(undefined)
+        setNewNote(note)
       }
       updateUpdateView(note: Note) {
         setNewNote(undefined)

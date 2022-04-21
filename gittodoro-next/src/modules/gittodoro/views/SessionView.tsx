@@ -10,7 +10,11 @@ export class SessionView implements SessionViewInterface {
   }
 
   updateView(session: Session): void {
-    this.callback(session)
+    this.callback({ session })
+  }
+
+  updateViewSessions(sessions: Session[]): void {
+    this.callback({ sessions })
   }
 
 }

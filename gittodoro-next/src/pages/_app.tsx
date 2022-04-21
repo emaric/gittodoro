@@ -5,18 +5,21 @@ import "core-js/actual"
 import '../styles/globals.css'
 
 import { MainClockProvider } from '@/context/MainClockContextProvider'
-import { SessionProvider } from '@/context/SessionContextProvider'
+import { MainSessionsProvider } from '@/context/MainSessionsContextProvider'
 import { MainNotesProvider } from "@/context/MainNotesContextProvider"
+import { MainRecordsProvider } from '@/context/MainRecordsContextProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <MainClockProvider>
-      <SessionProvider>
-        <MainNotesProvider>
-          <Component {...pageProps} />
-        </MainNotesProvider>
-      </SessionProvider>
+      <MainSessionsProvider>
+        <MainRecordsProvider>
+          <MainNotesProvider>
+            <Component {...pageProps} />
+          </MainNotesProvider>
+        </MainRecordsProvider>
+      </MainSessionsProvider>
     </MainClockProvider>
   )
 }

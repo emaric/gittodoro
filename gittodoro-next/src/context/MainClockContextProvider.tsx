@@ -18,7 +18,7 @@ const createClock = () => {
     microsecond: 0,
     nanosecond: 0,
   })
-  const end = start.add({ minutes: 2 })
+  const end = start.add({ minutes: 4 })
   console.log("MainClock", start.toString(), end.toString())
   const testClock = new Clock(start, end)
   return new Clock()

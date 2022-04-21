@@ -2,7 +2,7 @@ import { useState, MouseEvent, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 
 import { useMainClock } from '@/context/MainClockContextProvider'
-import { useSession } from '@/context/SessionContextProvider'
+import { useMainSessions } from '@/context/MainSessionsContextProvider'
 import { Session } from '@/models/Session'
 import { Record, createRecord, filterRecords } from '@/models/Record'
 
@@ -12,10 +12,12 @@ import ClockSecondsRing from "./ClockSecondsRing"
 import ClockCountdownTimer from './ClockCountdownTimer'
 import ClockActiveRing from './ClockActiveRing'
 import ClockRecordsRing from './ClockRecordsRing'
+import { useMainRecords } from '@/context/MainRecordsContextProvider'
 
 export const MainClock = () => {
   const { mainClock } = useMainClock()
-  const { session, start, stop } = useSession()
+  const { session, start, stop, mainSessions } = useMainSessions()
+  const { mainRecords } = useMainRecords()
 
   const defaultPomodoro = 25 * 60
 
@@ -85,12 +87,17 @@ export const MainClock = () => {
 
   useEffect(() => {
     if (mainClock) {
-      setRecords(filterRecords(mainClock, records))
+      setRecords([...mainRecords, ...filterRecords(mainClock, records)])
     } else {
       setRecords([])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainClock])
+  }, [mainClock, mainRecords])
+
+  useEffect(() => {
+    // update records
+    console.log('mainSessions...', mainSessions)
+  }, [mainSessions])
 
   return (
     <>

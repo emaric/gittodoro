@@ -2,14 +2,14 @@ import { CircularLinkedList } from './CircularLinkedList'
 import { StateTimer } from './StateTimer'
 
 export class Session {
-  id: string
+  id: number
   start: Date
   end?: Date
   timerSequence: StateTimer[]
   private circularLinkedTimerSequence: CircularLinkedList<StateTimer>
 
   constructor(params: {
-    id: string
+    id: number
     start: Date
     end?: Date
     timerSequence: StateTimer[]

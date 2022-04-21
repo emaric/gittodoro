@@ -19,7 +19,7 @@ export const mapTimerSequence = (
 export const mapSession = (sessionResponse: SessionResponse): Session => {
   const session = new Session({
     ...sessionResponse,
-    id: sessionResponse.id.toString(),
+    id: sessionResponse.id,
     timerSequence: mapTimerSequence(sessionResponse.timerSequence),
   })
 
@@ -29,7 +29,7 @@ export const mapSession = (sessionResponse: SessionResponse): Session => {
 export const mapNote = (noteResponse: NoteResponse): Note => {
   const note = new Note({
     ...noteResponse,
-    id: noteResponse.id ? noteResponse.id : -1,
+    id: noteResponse.id == undefined ? -1 : noteResponse.id,
     date: noteResponse.date ? noteResponse.date : new Date(),
     content: noteResponse.content ? noteResponse.content : '',
   })
@@ -39,15 +39,7 @@ export const mapNote = (noteResponse: NoteResponse): Note => {
 
 export const mapNotes = (noteResponse: NoteResponse): Note[] => {
   if (noteResponse.notes) {
-    return noteResponse.notes.map(
-      (note) =>
-        new Note({
-          ...note,
-          id: note.id ? note.id : -1,
-          date: note.date ? note.date : new Date(),
-          content: note.content ? note.content : '',
-        })
-    )
+    return noteResponse.notes.map((note) => mapNote(note))
   }
   return []
 }

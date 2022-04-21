@@ -34,6 +34,7 @@ export const MainNotes = () => {
 
   useEffect(() => {
     if (newNote) {
+      console.log('MainNotes.newNote...', newNote)
       setOpenNote(newNote)
     }
   }, [newNote])
