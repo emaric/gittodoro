@@ -58,13 +58,15 @@ export class CircularLinkedList<T> {
   }
 
   toJSON(key: string) {
-    const list = Array.from(Array(this.length)).map((_, i) => {
-      if (i == 0) {
+    let count = 0
+    const list = Array.from(Array(this.length)).map((_) => {
+      if (count++ == 0) {
         return this.current
       }
       return this.next()
     })
 
+    this.next()
     return list
   }
 }

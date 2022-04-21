@@ -29,5 +29,13 @@ describe('[SessionLocalStorageGateway] unit tests', () => {
       const session = gateway.readSession(date)
       expect(session).toEqual(expectedSession)
     })
+
+    it('should be able to load the sessions in range', () => {
+      const sessionResponse = gateway.viewSessionsByRange(
+        new Date('2022-04-15T00:01:00.000Z'),
+        new Date('2022-04-15T00:01:00.005Z')
+      )
+      expect(sessionResponse).toEqual([expectedSession])
+    })
   })
 })

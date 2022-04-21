@@ -99,4 +99,27 @@ export class SessionLocalStorageGateway implements SessionDataGatewayInterface {
     }
     return []
   }
+
+  viewSessionsByRange(start: Date, end: Date): Session[] {
+    return this.sessions.filter((session: Session) => {
+      if (
+        session.start.getTime() >= start.getTime() &&
+        session.start.getTime() < end.getTime()
+      ) {
+        return true
+      }
+
+      if (session.start.getTime() < start.getTime()) {
+        if (session.end) {
+          if (session.end.getTime() >= start.getTime()) {
+            return true
+          }
+        } else {
+          return end.getTime() > Date.now()
+        }
+      }
+
+      return false
+    })
+  }
 }

@@ -2,10 +2,12 @@ import { SessionController as MainSessionController } from '@emaric/gittodoro-ts
 import {
   StartSessionRequest,
   EndSessionRequest,
+  ViewSessionsByRangeRequest,
 } from '@emaric/gittodoro-ts/lib/interactor/requests/SessionRequest'
 import { SessionPresenterInterface } from '@emaric/gittodoro-ts/lib/interactor/responses/SessionPresenterInterface'
 import { StartSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/StartSessionCommand'
 import { EndSessionCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/EndSessionCommand'
+import { ViewSessionsByRangeCommand } from '@emaric/gittodoro-ts/lib/interactor/use-cases/ViewSessionsByRangeCommand'
 
 import { SessionLocalStorageGateway } from '../db/local/SessionLocalStorageGateway'
 import { SessionPresenter, SessionViewInterface } from './presenters/sessions'
@@ -18,6 +20,7 @@ export class SessionController {
 
   private startCommand: StartSessionCommand
   private endCommand: EndSessionCommand
+  private viewByRangeCommand: ViewSessionsByRangeCommand
 
   constructor(sessionView: SessionViewInterface) {
     this.storage = new SessionLocalStorageGateway()
@@ -26,6 +29,10 @@ export class SessionController {
 
     this.startCommand = new StartSessionCommand(this.storage, this.presenter)
     this.endCommand = new EndSessionCommand(this.storage, this.presenter)
+    this.viewByRangeCommand = new ViewSessionsByRangeCommand(
+      this.storage,
+      this.presenter
+    )
   }
 
   start(duration: Duration, start = new Date()) {
@@ -47,5 +54,14 @@ export class SessionController {
 
   clear() {
     this.storage.clearStorage()
+  }
+
+  viewByRange(start: Date, end: Date) {
+    const request: ViewSessionsByRangeRequest = {
+      message: 'Get sessions by range',
+      start,
+      end,
+    }
+    this.mainController.viewSessionsByRange(this.viewByRangeCommand, request)
   }
 }
