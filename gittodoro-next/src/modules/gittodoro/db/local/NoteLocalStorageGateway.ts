@@ -93,12 +93,11 @@ export class NoteLocalStorageGateway implements NoteDataGatewayInterface {
   }
 
   readByRange(start: Date, end: Date): Note[] {
-    const notesInRange = this.notes.filter((note) => {
-      if (note.date.getTime() >= start.getTime()) {
-        return true
-      }
-      return end.getTime() >= start.getTime()
-    })
+    const notesInRange = this.notes.filter(
+      (note) =>
+        note.date.getTime() >= start.getTime() &&
+        note.date.getTime() < end.getTime()
+    )
     return notesInRange
   }
 }
