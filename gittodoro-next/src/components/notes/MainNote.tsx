@@ -7,6 +7,8 @@ import * as Button from "./buttons"
 import { NoteContent } from "./NoteContent"
 import { NoteContentEditor } from "./NoteContentEditor"
 import { confirmDeleteNote, notifyCopied } from "./notifications"
+import { Copy } from "@/modules/copytoclipboard"
+import { notifySuccess } from "@/modules/notiflix"
 
 interface Props {
   note: Note
@@ -36,10 +38,10 @@ export const MainNote = ({ note, editing, onChange, onClickEdit, onClickDelete }
     })
   }, [onClickDelete, note])
 
-  const handleCopy = useCallback(async () => {
+  const handleCopy = useCallback(() => {
     if (note) {
-      await navigator.clipboard.writeText(note.content)
-      notifyCopied()
+      Copy(note.content)
+      notifySuccess('Copied!')
     }
   }, [note])
 
