@@ -5,7 +5,7 @@ describe('[Session] unit tests', () => {
   describe('when tyring to run session timers', () => {
     it('should run the timers indefinitely', () => {
       const sampleSession = new Session({
-        id: 'sample_session',
+        id: 0,
         start: new Date(),
         timerSequence: [
           {

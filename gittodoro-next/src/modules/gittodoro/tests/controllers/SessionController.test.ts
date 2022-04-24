@@ -71,10 +71,12 @@ describe('[SessionController] unit tests', () => {
     const sample1 = {
       start: new Date('2022-04-17T09:00:00Z'),
       end: new Date('2022-04-17T17:00:00Z'),
+      id: 1,
     }
     const sample2 = {
       start: new Date('2022-04-17T18:00:00Z'),
       end: new Date('2022-04-18T01:00:00Z'),
+      id: 2,
     }
 
     const sample1Output = new Session({ ...expected, ...sample1 })
