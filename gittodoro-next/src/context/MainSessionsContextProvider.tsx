@@ -51,9 +51,9 @@ export const MainSessionsProvider: FC<Props> = ({ children }) => {
     const now = new Date()
 
     const defaultDuration = {
-      pomodoro: 25,
-      short: 5,
-      long: 15,
+      pomodoro: 25 * 60,
+      short: 5 * 60,
+      long: 15 * 60,
       longInterval: 4
     }
 
