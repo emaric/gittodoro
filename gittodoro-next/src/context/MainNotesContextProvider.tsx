@@ -1,11 +1,9 @@
 import { createContext, useMemo, ReactNode, useContext, useEffect, useState, useCallback } from "react"
 
-import * as DateTime from '@/modules/temporal/DateTime'
-
 import { Note } from "@/models/Note"
+import { NotesController as NotesAppController, NotesViewInterface } from '@/controllers/NotesController'
 
 import { useMainClock } from "./MainClockContextProvider"
-import { NotesController as NotesAppController, NotesViewInterface } from '@/controllers/NotesController'
 
 
 type MainNotesContextType = {
@@ -49,24 +47,6 @@ export const MainNotesProvider = (props: { children: ReactNode }) => {
     return new NotesAppController(view)
   }, [view])
 
-  const filterNotes = useCallback(() => {
-    if (mainClock) {
-      const filtered = mainNotes.filter(note => {
-        const noteDate = DateTime.fromUTC(note.date)
-        const diff = DateTime.difference(noteDate, mainClock.start)
-        if (diff >= 0) {
-          return true;
-        } else {
-          return DateTime.difference(mainClock.end, noteDate) >= 0
-        }
-      })
-
-      setMainNotes(filtered)
-    } else {
-      setMainNotes([])
-    }
-  }, [mainClock, mainNotes])
-
   const loadNotesFromStorage = useCallback(() => {
     if (mainClock && controller) {
       controller.readByRange(mainClock.startDate, mainClock.endDate)
@@ -99,7 +79,7 @@ export const MainNotesProvider = (props: { children: ReactNode }) => {
   }, [loadNotesFromStorage, controller])
 
   useEffect(() => {
-    filterNotes()
+    loadNotesFromStorage()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainClock])
 

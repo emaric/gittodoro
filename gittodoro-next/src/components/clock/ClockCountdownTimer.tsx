@@ -44,7 +44,7 @@ const ClockCountdownTimer = ({ state, initialDuration, running = false }: Props)
     setRemainingMinutes(minutes)
     setRemainingSeconds(seconds)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialDuration])
+  }, [initialDuration, running])
 
   const displayMinutes = useMemo(() => (remainingMinutes < 10 ? "0" : "") + remainingMinutes, [remainingMinutes])
   const displaySeconds = useMemo(() => (remainingSeconds < 10 ? "0" : "") + remainingSeconds, [remainingSeconds])

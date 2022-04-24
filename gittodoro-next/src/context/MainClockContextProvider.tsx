@@ -6,7 +6,8 @@ import { Clock } from "@/models/Clock"
 
 
 type MainClockContext = {
-  mainClock?: Clock
+  mainClock?: Clock,
+  setMainClock: (clock: Clock) => void
 }
 
 const MainClockContext = createContext<MainClockContext | undefined>(undefined)
@@ -49,7 +50,7 @@ export const MainClockProvider = (props: { children: JSX.Element }) => {
   }, [updateMainClock])
 
   return (
-    <MainClockContext.Provider value={{ mainClock }}>
+    <MainClockContext.Provider value={{ mainClock, setMainClock }}>
       {props.children}
     </MainClockContext.Provider>
   )

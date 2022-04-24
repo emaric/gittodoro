@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 
 import { MainClock } from '@/components/clock/MainClock'
 import { MainNotes } from '@/components/notes/MainNotes'
+import { MainDatePicker } from '@/components/date/MainDatePicker'
 
 const Home: NextPage = () => {
   return (
@@ -15,10 +16,11 @@ const Home: NextPage = () => {
 
       <div className={styles.container}>
         <main>
-          <h1 className={styles.title}>git<span>todo</span>ro</h1>
+          {/* <h1 className={styles.title}>git<span>todo</span>ro</h1> */}
           <section className={styles.main_clock_container}>
             <MainClock />
           </section>
+          <MainDatePicker />
           <section className={styles.main_notes_container}>
             <MainNotes />
           </section>

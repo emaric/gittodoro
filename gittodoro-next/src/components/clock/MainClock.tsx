@@ -53,24 +53,21 @@ export const MainClock = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
-  const updateRecord = useCallback(() => {
+  useEffect(() => {
     if (session && !session.end) {
       setRecord(createRecord(session))
     } else {
-      if (record && session?.endPlainDateTime) {
-        record.end = session.endPlainDateTime
-      }
       setRecord(undefined)
     }
-  }, [session, record])
+  }, [session])
 
   useEffect(() => {
     updateCountdownTimer()
     if (record && session) {
-      setRecords(records.concat(record))
       const ms = (session.timer.duration + Session.TIMER_DELAY) * 1000
       const timeout = setTimeout(() => {
         if (!session.end) {
+          setRecords(records.concat(record))
           session.switchTimer()
           setRecord(createRecord(session))
         }
@@ -81,13 +78,8 @@ export const MainClock = () => {
   }, [record])
 
   useEffect(() => {
-    updateRecord()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session])
-
-  useEffect(() => {
     if (mainClock) {
-      setRecords([...mainRecords, ...filterRecords(mainClock, records)])
+      setRecords(mainRecords)
     } else {
       setRecords([])
     }
