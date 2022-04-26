@@ -1,0 +1,3 @@
+[submodule "gittodoro-base"]
+	path = gittodoro-base
+	url = git@github.com:emaric/gittodoro-ts.git
