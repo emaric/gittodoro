@@ -17,10 +17,10 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <main>
           {/* <h1 className={styles.title}>git<span>todo</span>ro</h1> */}
+          <MainDatePicker />
           <section className={styles.main_clock_container}>
             <MainClock />
           </section>
-          <MainDatePicker />
           <section className={styles.main_notes_container}>
             <MainNotes />
           </section>

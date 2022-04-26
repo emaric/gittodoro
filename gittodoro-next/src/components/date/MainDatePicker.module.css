@@ -1,8 +1,9 @@
-.container > button {
-  font-size: medium;
+.container {
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem;
 }
 
 .container > label {
   cursor: pointer;
-  padding: 1rem;
 }
