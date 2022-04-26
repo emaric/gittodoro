@@ -24,8 +24,7 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.1",
-    "remark-gfm": "^3.0.1",
-    "worker-plugin": "^5.0.1"
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
