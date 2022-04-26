@@ -21,8 +21,6 @@ export const MainRecordsProvider = (props: { children: ReactNode }) => {
   const [mainRecords, setMainRecords] = useState<Record[]>([])
 
   useEffect(() => {
-    // update main records
-    console.log('update main records...')
     let records: Record[] = []
     mainSessions.forEach((session) => {
       if (session.endPlainDateTime) {
@@ -34,10 +32,6 @@ export const MainRecordsProvider = (props: { children: ReactNode }) => {
     setMainRecords(records)
 
   }, [mainSessions])
-
-  useEffect(() => {
-    console.log('main records...', mainRecords)
-  }, [mainRecords])
 
   return (
     <MainRecordsContext.Provider value={{ mainRecords, record, setRecord }}>

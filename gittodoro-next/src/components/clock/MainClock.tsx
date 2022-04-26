@@ -86,11 +86,6 @@ export const MainClock = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainClock, mainRecords])
 
-  useEffect(() => {
-    // update records
-    console.log('mainSessions...', mainSessions)
-  }, [mainSessions])
-
   return (
     <>
       {(!session || session.end) ? (
