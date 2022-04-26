@@ -3,30 +3,44 @@ import { DateTimeType, difference, now } from '@/modules/temporal/DateTime'
 import { Clock } from './Clock'
 import { Session } from './Session'
 
-export type Record = {
+export class Record {
   state: string
   start: DateTimeType
   end: DateTimeType
+
+  constructor(props: {
+    state: string
+    start: DateTimeType
+    end: DateTimeType
+  }) {
+    this.state = props.state
+    this.start = props.start
+    this.end = props.end
+  }
+
+  get remainingTime() {
+    return difference(this.end, now())
+  }
 }
 
 export const createRecord = (session: Session): Record => {
-  return {
+  return new Record({
     state: session.stateString,
     start: now(),
     end: now().add({ seconds: session.timer.duration + Session.TIMER_DELAY }),
-  }
+  })
 }
 
 export const generateRecords = (session: Session, end: DateTimeType) => {
   const firstTimer = session.timerSequence[0]
   const records: Record[] = [
-    {
+    new Record({
       state: State[firstTimer.state],
       start: session.startPlainDateTime,
       end: session.startPlainDateTime.add({
         seconds: firstTimer.duration + Session.TIMER_DELAY,
       }),
-    },
+    }),
   ]
 
   let timerIndex = 1
@@ -34,11 +48,13 @@ export const generateRecords = (session: Session, end: DateTimeType) => {
   while (lastRecord && difference(end, lastRecord.end) > 0) {
     const timer = session.timerSequence[timerIndex]
     const start = lastRecord.end.add({ seconds: 1 })
-    records.push({
-      state: State[timer.state],
-      start,
-      end: start.add({ seconds: timer.duration + Session.TIMER_DELAY }),
-    })
+    records.push(
+      new Record({
+        state: State[timer.state],
+        start,
+        end: start.add({ seconds: timer.duration + Session.TIMER_DELAY }),
+      })
+    )
 
     timerIndex = timerIndex + 1
     if (timerIndex == session.timerSequence.length) {

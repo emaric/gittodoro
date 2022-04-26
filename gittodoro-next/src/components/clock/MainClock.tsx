@@ -13,11 +13,12 @@ import ClockCountdownTimer from './ClockCountdownTimer'
 import ClockActiveRing from './ClockActiveRing'
 import ClockRecordsRing from './ClockRecordsRing'
 import { useMainRecords } from '@/context/MainRecordsContextProvider'
+import { MainRecordAudioPlayer } from './MainRecordAudioPlayer'
 
 export const MainClock = () => {
   const { mainClock } = useMainClock()
   const { session, start, stop, mainSessions } = useMainSessions()
-  const { mainRecords } = useMainRecords()
+  const { mainRecords, record, setRecord } = useMainRecords()
 
   const defaultPomodoro = 25 * 60
 
@@ -25,9 +26,7 @@ export const MainClock = () => {
   const [countdown, setCountdown] = useState(false)
   const [remainingTime, setRemainingTime] = useState(defaultPomodoro)
 
-  const [record, setRecord] = useState<Record | undefined>(undefined)
   const [records, setRecords] = useState<Record[]>([])
-
 
   const handleClick = useCallback(async (event: MouseEvent<SVGCircleElement>) => {
     const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -59,6 +58,7 @@ export const MainClock = () => {
     } else {
       setRecord(undefined)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
   useEffect(() => {
@@ -98,6 +98,9 @@ export const MainClock = () => {
           <title>GIT TODO RO</title>
         </Head>
       ) : null}
+
+      <MainRecordAudioPlayer />
+
       <ClockBase>
         {mainClock && <ClockSecondsRing clock={mainClock} />}
         {mainClock && <ClockRecordsRing clock={mainClock} records={records} />}

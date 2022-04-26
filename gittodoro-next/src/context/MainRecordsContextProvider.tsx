@@ -7,14 +7,17 @@ import { useMainSessions } from "./MainSessionsContextProvider";
 
 
 type MainRecordsContextType = {
-  mainRecords: Record[]
+  mainRecords: Record[],
+  record?: Record,
+  setRecord: (record?: Record) => void
 }
 
-const MainRecordsContext = createContext<MainRecordsContextType>({ mainRecords: [] })
+const MainRecordsContext = createContext<MainRecordsContextType>({ mainRecords: [], setRecord: () => { } })
 
 export const MainRecordsProvider = (props: { children: ReactNode }) => {
   const { mainSessions } = useMainSessions()
 
+  const [record, setRecord] = useState<Record | undefined>(undefined)
   const [mainRecords, setMainRecords] = useState<Record[]>([])
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export const MainRecordsProvider = (props: { children: ReactNode }) => {
   }, [mainRecords])
 
   return (
-    <MainRecordsContext.Provider value={{ mainRecords }}>
+    <MainRecordsContext.Provider value={{ mainRecords, record, setRecord }}>
       {props.children}
     </MainRecordsContext.Provider>
   )

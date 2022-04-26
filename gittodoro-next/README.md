@@ -9,3 +9,7 @@ Github issues tracker using the pomodoro technique.
 - [ ] View summary by date
 - [ ] View summary by month
 - [ ] View summary by week
+
+### Credits
+
+“Sounds by https://quicksounds.com“

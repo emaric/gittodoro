@@ -26,6 +26,9 @@ const Home: NextPage = () => {
           </section>
         </main>
         <footer>
+          <p>“Sounds by <a href="https://quicksounds.com">https://quicksounds.com</a>“</p>
+        </footer>
+        <footer>
           <span>Copyright © 2022</span> <a href="https://github.com/emaric/gittodoro.git">@emaric/gittorodo</a>
         </footer>
       </div>
