@@ -1,3 +1,6 @@
 [submodule "gittodoro-base"]
 	path = gittodoro-base
 	url = git@github.com:emaric/gittodoro-ts.git
+[submodule "gittodoro-next-app"]
+	path = gittodoro-next-app
+	url = git@github.com:emaric/gittodoro-next.git
