@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  web:
+    build: 
+      context: ./gittodoro-next-app
+      dockerfile: Dockerfile
+      args:
+        - GITHUB_NPM_TOKEN=$GITHUB_NPM_TOKEN
+    ports:
+      - 5000:3000
+    restart: unless-stopped
