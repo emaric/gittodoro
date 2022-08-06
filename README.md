@@ -40,3 +40,9 @@ This project will be following the principles of Clean Architecture by Uncle Bob
 ## License
 
 [MIT](LICENSE)
+
+## Include the submodules when cloning
+
+```
+git clone --recursive git@github.com-emaric:emaric/gittodoro.git
+```
