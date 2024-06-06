@@ -1,48 +1,52 @@
 # Gittodoro
 
-A Github Issue progress tracker using the pomodoro technique.
+A GitHub Issue progress tracker utilizing the Pomodoro technique.
 
 ## Mission
 
-1. Help the user be productive by utilizing the pomodoro technique.
-1. Help the user measure their productivity using the defined pomodoro duration as a unit.
-1. Help the user keep track of Task Notes per GitHub Issue.
-1. Help the user have a closer time estimates for GitHub Issues.
+1. Enhance user productivity through the Pomodoro technique.
+2. Measure productivity using Pomodoro durations as a unit.
+3. Track task notes per GitHub issue.
+4. Provide closer time estimates for GitHub issues.
 
-## How the app works
+## How the App Works
 
-1. The app can be used as a simple Todo List Tracker app.
+### As a Simple Todo List Tracker
 
-   1. The user can type in the task they want to focus on.
-   1. The user can start the session by clicking on a button.
-   1. The app will notify the user on which round they are in the session.
-      1. There are 3 states for each round:
-         1. <span style="color:tomato">Pomodoro</span> for the focus or work round.
-         1. <span style="color:rgb(85, 194, 135)">Short</span> for the short break round.
-         1. <span style="color:rgb(71, 189, 255)">Long</span> for the long break round.
-   1. Once the task is done, the user can click a button to stop the session.
+1. Users can type in tasks to focus on.
+2. Start sessions by clicking a button.
+3. The app notifies users of their current round in the session.
+   - Three states for each round:
+     - **<span style="color:tomato">Pomodoro</span>**: Focus or work round.
+     - **<span style="color:rgb(85, 194, 135)">Short</span>**: Short break round.
+     - **<span style="color:rgb(71, 189, 255)">Long</span>**: Long break round.
+4. Users can stop sessions once tasks are done.
 
-1. The app can be used as a Github Issues Tracker app.
+### As a GitHub Issues Tracker
 
-   1. The user can login with their Github account to get the list of Issues they can associate with their session.
-   1. Or the user can just input the link to the issue.
-   1. Github Issues can contain multiple tasks. The user can select the task that they want to associate the session to.
+1. Users can log in with their GitHub account to fetch a list of issues to associate with sessions.
+2. Alternatively, users can input the link to an issue.
+3. GitHub issues can contain multiple tasks, and users can select tasks to associate with sessions.
 
-1. The app can be used as a performance analysis tool using the data from the sessions that the user completes. The aim is for the user to gain insights on how long they can address issues or finish tasks using the pomodoro technique. This will also help them have a more accurate time estimates for future issues.
+### As a Performance Analysis Tool
+
+1. The app analyzes session data to provide insights on task completion times using the Pomodoro technique.
+2. Helps users make more accurate time estimates for future issues.
 
 ## Clean Architecture
 
 ![The Clean Architecture](./docs/CleanArchitecture.jpg)
 
-This project will be following the principles of Clean Architecture by Uncle Bob.
-
+This project follows the principles of Clean Architecture by Uncle Bob.
 
 ## License
 
 [MIT](LICENSE)
 
-## Include the submodules when cloning
+## Cloning the Repository
 
-```
+Include submodules when cloning:
+
+```sh
 git clone --recursive git@github.com-emaric:emaric/gittodoro.git
 ```
